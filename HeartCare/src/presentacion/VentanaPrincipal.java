@@ -45,8 +45,8 @@ public class VentanaPrincipal {
 	private JButton btnDiagnosticar;
 	private JButton btnEspecialistas;
 	private JPanel pnlInicio;
-	private JPanel pnlDiagnosticar;
 	private JPanel pnlEspecialistas;
+	private JPanel pnlDiagnosticar;
 
 	/**
 	 * Launch the application.
@@ -154,6 +154,9 @@ public class VentanaPrincipal {
 		
 		pnlEspecialistas = new PanelEspecialistas();
 		pnlContenido.add(pnlEspecialistas, "Especialistas");
+		
+		pnlDiagnosticar = new PanelDiagnosticar();
+		pnlContenido.add(pnlDiagnosticar, "Diagnosticar");
 	}
 
 	public Window getFrame() {

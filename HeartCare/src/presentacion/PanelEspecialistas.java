@@ -141,7 +141,7 @@ public class PanelEspecialistas extends JPanel {
 		panelInfo.add(txtEdad, gbc_txtEdad);
 		txtEdad.setColumns(10);
 		
-		JLabel lblSexo = new JLabel("Sexo"); //$NON-NLS-1$
+		JLabel lblSexo = new JLabel("Sexo");
 		GridBagConstraints gbc_lblSexo = new GridBagConstraints();
 		gbc_lblSexo.anchor = GridBagConstraints.EAST;
 		gbc_lblSexo.insets = new Insets(0, 0, 5, 5);
@@ -267,8 +267,8 @@ public class PanelEspecialistas extends JPanel {
 		panelInfo.add(txtHorario, gbc_txtHorario);
 		txtHorario.setColumns(10);
 		
-		JLabel lblInformacinSobreEspecialidad = new JLabel("Informaci\u00F3n sobre Especialidad)");
-		lblInformacinSobreEspecialidad.setFont(new Font("Tahoma", Font.BOLD, 15)); //$NON-NLS-1$
+		JLabel lblInformacinSobreEspecialidad = new JLabel("Informaci\u00F3n sobre Especialidad");
+		lblInformacinSobreEspecialidad.setFont(new Font("Tahoma", Font.BOLD, 15));
 		GridBagConstraints gbc_lblInformacinSobreEspecialidad = new GridBagConstraints();
 		gbc_lblInformacinSobreEspecialidad.anchor = GridBagConstraints.SOUTH;
 		gbc_lblInformacinSobreEspecialidad.gridwidth = 6;
@@ -313,7 +313,7 @@ public class PanelEspecialistas extends JPanel {
 		panelInfo.add(txtJefe, gbc_txtJefe);
 		txtJefe.setColumns(10);
 		
-		JLabel lblOperar = new JLabel("Puede Operar"); //$NON-NLS-1$
+		JLabel lblOperar = new JLabel("Puede Operar");
 		GridBagConstraints gbc_lblOperar = new GridBagConstraints();
 		gbc_lblOperar.anchor = GridBagConstraints.EAST;
 		gbc_lblOperar.insets = new Insets(0, 0, 5, 5);
@@ -334,7 +334,7 @@ public class PanelEspecialistas extends JPanel {
 		JButton btnContactarEspecialista = new JButton("Contactar Especialista");
 		btnContactarEspecialista
 				.setIcon(new ImageIcon(PanelEspecialistas.class.getResource("/presentacion/Imagenes/mensaje.png")));
-		//btnContactarEspecialista.addActionListener(new ContactarActionListener());
+		btnContactarEspecialista.addActionListener(new ContactarActionListener());
 		GridBagConstraints gbc_btnContactarEspecialista = new GridBagConstraints();
 		gbc_btnContactarEspecialista.fill = GridBagConstraints.BOTH;
 		gbc_btnContactarEspecialista.insets = new Insets(0, 0, 0, 5);
@@ -356,12 +356,12 @@ public class PanelEspecialistas extends JPanel {
 		
 	}
 
-	/*private class ContactarActionListener implements ActionListener {
+	private class ContactarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			ContactarEspecialista ventana = new ContactarEspecialista();
 			ventana.setVisible(true);
 		}
-	}*/
+	}
 	
 	private class TablaActionListener implements ListSelectionListener{
 		@Override
