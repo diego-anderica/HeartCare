@@ -10,10 +10,38 @@ public class Diagnostico {
 	private boolean miccionexcesiva = false, retencionliquidos = false, bajaproduccionorina = false;
 	private boolean ganasvomitar = false, faltaapetito = false, fiebre = false, cansancio = false;
 	private boolean mareos = false, vertigo = false, debilidad = false, perdidaconocimiento = false, sudoracion = false;
-	private boolean palidez = false, membranasmucosas = false;
+	private boolean palidez = false, membranasmucosas = false, descamacion = false;
+	
+	private String diagnostico;
+	private String tratamiento;
 	
 	public Diagnostico(){
 		
+	}
+	
+	public String getDiagnostico() {
+		return diagnostico;
+	}
+
+	public void setDiagnostico(String diagnostico) {
+		this.diagnostico = diagnostico;
+	}
+
+	public String getTratamiento() {
+		return tratamiento;
+	}
+
+	public void setTratamiento(String tratamiento) {
+		this.tratamiento = tratamiento;
+	}
+	
+	
+	public boolean isDescamacion() {
+		return descamacion;
+	}
+
+	public void setDescamacion(boolean descamacion) {
+		this.descamacion = descamacion;
 	}
 
 	public boolean isDolordepecho() {
