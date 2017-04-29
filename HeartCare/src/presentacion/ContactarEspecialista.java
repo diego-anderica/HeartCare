@@ -291,19 +291,15 @@ public class ContactarEspecialista extends JFrame {
 	private class BtnEnviarConsultaActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			if (txtAsunto.getText().length() == 0) {
-				if (JOptionPane.showConfirmDialog(getPanel(),
-						"Se va a enviar el mensaje sin asunto",
-						"Enviar...",
+				if (JOptionPane.showConfirmDialog(getPanel(), "Se va a enviar el mensaje sin asunto", "Enviar...",
 						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-					JOptionPane.showMessageDialog(getPanel(),
-							"El mensaje ha sido enviado",
-							"Enviar...",
+					JOptionPane.showMessageDialog(getPanel(), "El mensaje ha sido enviado", "Enviar...",
 							JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 				}
 			} else {
-				JOptionPane.showMessageDialog(getPanel(), "El mensaje ha sido enviado",
-						"Enviar...", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(getPanel(), "El mensaje ha sido enviado", "Enviar...",
+						JOptionPane.INFORMATION_MESSAGE);
 				dispose();
 			}
 		}

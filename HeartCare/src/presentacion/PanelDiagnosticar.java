@@ -7,6 +7,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.border.BevelBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.AbstractListModel;
 import javax.swing.JToolBar;
 import java.awt.GridBagLayout;
@@ -20,7 +21,10 @@ import javax.swing.JTextArea;
 import java.awt.FlowLayout;
 import javax.swing.JRadioButton;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ItemListener;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.awt.event.ItemEvent;
 import dominio.Diagnostico;
 import java.awt.event.ActionListener;
@@ -40,38 +44,38 @@ public class PanelDiagnosticar extends JPanel {
 	private JTextArea taTratamiento;
 	private JButton btnGenerarInforme;
 	private JPanel pnlDesSintomas;
-	private JLabel lblProblemasDeCorazn;
+	private JLabel lblProblemasDeCorazon;
 	private JRadioButton rdbtnArritmias;
 	private JRadioButton rdbtnAlteracionesDelRitmo;
-	private JRadioButton rdbtnPulsoIrregularO;
+	private JRadioButton rdbtnPulsoIrregular;
 	private JLabel lblDoloresOHinchazones;
 	private JRadioButton rdbtnDolorDePecho;
 	private JRadioButton rdbtnDolorDeBrazo;
 	private JRadioButton rdbtnHinchaznEnPies;
-	private JRadioButton rdbtnHinchaznEnEl;
-	private JRadioButton rdbtnInflamacinEnEl;
-	private JRadioButton rdbtnInflamacinEnPiernas;
-	private JRadioButton rdbtnInflamacinEnGanglios;
+	private JRadioButton rdbtnHinchazonAbdomen;
+	private JRadioButton rdbtnInflamacionAbdomen;
+	private JRadioButton rdbtnInflamacionEnPiernas;
+	private JRadioButton rdbtnInflamacionEnGanglios;
 	private JLabel lblErupcionesORojeces;
-	private JRadioButton rdbtnErupcionesCutneasO;
+	private JRadioButton rdbtnErupcionesCutaneas;
 	private JRadioButton rdbtnOjosLenguaRojos;
 	private JLabel lblSistemaUrinario;
-	private JRadioButton rdbtnMiccinExcesivaDurante;
-	private JRadioButton rdbtnRetencinDeLquidos;
-	private JRadioButton rdbtnBajaProduccinDe;
+	private JRadioButton rdbtnMiccionExcesivaNoche;
+	private JRadioButton rdbtnRetencionDeLiquidos;
+	private JRadioButton rdbtnBajaProduccionOrina;
 	private JLabel lblSistemaDigestivo;
 	private JRadioButton rdbtnGanasDeVomitar;
 	private JRadioButton rdbtnFaltaDeApetito;
 	private JLabel lblOtrosSntomas;
-	private JRadioButton rdbtnMembranasMucosasEn;
+	private JRadioButton rdbtnMembranasMucosasLengua;
 	private JRadioButton rdbtnPalidez;
-	private JRadioButton rdbtnSudoracin;
-	private JRadioButton rdbtnPrdidaDeConocimiento;
+	private JRadioButton rdbtnSudoracion;
+	private JRadioButton rdbtnPerdidaDeConocimiento;
 	private JRadioButton rdbtnDebilidad;
-	private JRadioButton rdbtnVrtigo;
+	private JRadioButton rdbtnVertigo;
 	private JRadioButton rdbtnMareos;
 	private JRadioButton rdbtnCansancio;
-	private JRadioButton rdbtnFiebre_1;
+	private JRadioButton rdbtnFiebre;
 	Diagnostico diagnostico;
 	private JRadioButton rdbtnDescamacin;
 	private JLabel lblSistemaRespiratorio;
@@ -120,16 +124,16 @@ public class PanelDiagnosticar extends JPanel {
 		gbl_pnlDesSintomas.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		pnlDesSintomas.setLayout(gbl_pnlDesSintomas);
 		
-		lblProblemasDeCorazn = new JLabel("Problemas de corazón");
-		lblProblemasDeCorazn.setBackground(Color.LIGHT_GRAY);
-		lblProblemasDeCorazn.setHorizontalAlignment(SwingConstants.LEFT);
-		GridBagConstraints gbc_lblProblemasDeCorazn = new GridBagConstraints();
-		gbc_lblProblemasDeCorazn.anchor = GridBagConstraints.WEST;
-		gbc_lblProblemasDeCorazn.insets = new Insets(0, 0, 5, 5);
-		lblProblemasDeCorazn.setFont(new java.awt.Font("Tahoma", 0, 18)); 
-		gbc_lblProblemasDeCorazn.gridx = 0;
-		gbc_lblProblemasDeCorazn.gridy = 0;
-		pnlDesSintomas.add(lblProblemasDeCorazn, gbc_lblProblemasDeCorazn);
+		lblProblemasDeCorazon = new JLabel("Problemas de coraz\u00f3n");
+		lblProblemasDeCorazon.setBackground(Color.LIGHT_GRAY);
+		lblProblemasDeCorazon.setHorizontalAlignment(SwingConstants.LEFT);
+		GridBagConstraints gbc_lblProblemasDeCorazon = new GridBagConstraints();
+		gbc_lblProblemasDeCorazon.anchor = GridBagConstraints.WEST;
+		gbc_lblProblemasDeCorazon.insets = new Insets(0, 0, 5, 5);
+		lblProblemasDeCorazon.setFont(new java.awt.Font("Tahoma", 0, 18)); 
+		gbc_lblProblemasDeCorazon.gridx = 0;
+		gbc_lblProblemasDeCorazon.gridy = 0;
+		pnlDesSintomas.add(lblProblemasDeCorazon, gbc_lblProblemasDeCorazon);
 		
 		rdbtnArritmias = new JRadioButton("Arritmias");
 		rdbtnArritmias.addItemListener(new RdbtnArritmiasItemListener());
@@ -141,7 +145,7 @@ public class PanelDiagnosticar extends JPanel {
 		gbc_rdbtnArritmias.gridy = 1;
 		pnlDesSintomas.add(rdbtnArritmias, gbc_rdbtnArritmias);
 		
-		rdbtnAlteracionesDelRitmo = new JRadioButton("Alteraciones del ritmo cardíaco");
+		rdbtnAlteracionesDelRitmo = new JRadioButton("Alteraciones del ritmo card\u00edaco");
 		rdbtnAlteracionesDelRitmo.addItemListener(new RdbtnAlteracionesDelRitmoItemListener());
 		GridBagConstraints gbc_rdbtnAlteracionesDelRitmo = new GridBagConstraints();
 		gbc_rdbtnAlteracionesDelRitmo.anchor = GridBagConstraints.WEST;
@@ -150,16 +154,16 @@ public class PanelDiagnosticar extends JPanel {
 		gbc_rdbtnAlteracionesDelRitmo.gridy = 1;
 		pnlDesSintomas.add(rdbtnAlteracionesDelRitmo, gbc_rdbtnAlteracionesDelRitmo);
 		
-		rdbtnPulsoIrregularO = new JRadioButton("Pulso irregular o acelerado");
-		rdbtnPulsoIrregularO.addItemListener(new RdbtnPulsoIrregularOItemListener());
-		GridBagConstraints gbc_rdbtnPulsoIrregularO = new GridBagConstraints();
-		gbc_rdbtnPulsoIrregularO.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnPulsoIrregularO.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnPulsoIrregularO.gridx = 0;
-		gbc_rdbtnPulsoIrregularO.gridy = 2;
-		pnlDesSintomas.add(rdbtnPulsoIrregularO, gbc_rdbtnPulsoIrregularO);
+		rdbtnPulsoIrregular = new JRadioButton("Pulso irregular o acelerado");
+		rdbtnPulsoIrregular.addItemListener(new RdbtnPulsoIrregularOItemListener());
+		GridBagConstraints gbc_rdbtnPulsoIrregular = new GridBagConstraints();
+		gbc_rdbtnPulsoIrregular.anchor = GridBagConstraints.WEST;
+		gbc_rdbtnPulsoIrregular.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnPulsoIrregular.gridx = 0;
+		gbc_rdbtnPulsoIrregular.gridy = 2;
+		pnlDesSintomas.add(rdbtnPulsoIrregular, gbc_rdbtnPulsoIrregular);
 		
-		lblDoloresOHinchazones = new JLabel("Dolores o hinchazones físicos");
+		lblDoloresOHinchazones = new JLabel("Dolores o hinchazones f\u00edsicos");
 		GridBagConstraints gbc_lblDoloresOHinchazones = new GridBagConstraints();
 		gbc_lblDoloresOHinchazones.anchor = GridBagConstraints.WEST;
 		gbc_lblDoloresOHinchazones.insets = new Insets(0, 0, 5, 5);
@@ -177,7 +181,7 @@ public class PanelDiagnosticar extends JPanel {
 		gbc_rdbtnDolorDePecho.gridy = 4;
 		pnlDesSintomas.add(rdbtnDolorDePecho, gbc_rdbtnDolorDePecho);
 		
-		rdbtnDolorDeBrazo = new JRadioButton("Dolor de brazo izquierdo, de cuello, de mandíbula o de espalda");
+		rdbtnDolorDeBrazo = new JRadioButton("Dolor de brazo izquierdo, de cuello, de mand\u00edbula o de espalda");
 		rdbtnDolorDeBrazo.addItemListener(new RdbtnDolorDeBrazoItemListener());
 		GridBagConstraints gbc_rdbtnDolorDeBrazo = new GridBagConstraints();
 		gbc_rdbtnDolorDeBrazo.anchor = GridBagConstraints.WEST;
@@ -186,7 +190,7 @@ public class PanelDiagnosticar extends JPanel {
 		gbc_rdbtnDolorDeBrazo.gridy = 4;
 		pnlDesSintomas.add(rdbtnDolorDeBrazo, gbc_rdbtnDolorDeBrazo);
 		
-		rdbtnHinchaznEnPies = new JRadioButton("Hinchazón en pies, tobillos o ambos");
+		rdbtnHinchaznEnPies = new JRadioButton("Hinchaz\u00f3n en pies, tobillos o ambos");
 		rdbtnHinchaznEnPies.addItemListener(new RdbtnHinchaznEnPiesItemListener());
 		GridBagConstraints gbc_rdbtnHinchaznEnPies = new GridBagConstraints();
 		gbc_rdbtnHinchaznEnPies.anchor = GridBagConstraints.WEST;
@@ -195,43 +199,43 @@ public class PanelDiagnosticar extends JPanel {
 		gbc_rdbtnHinchaznEnPies.gridy = 5;
 		pnlDesSintomas.add(rdbtnHinchaznEnPies, gbc_rdbtnHinchaznEnPies);
 		
-		rdbtnHinchaznEnEl = new JRadioButton("Hinchazón en el abdomen");
-		rdbtnHinchaznEnEl.addItemListener(new RdbtnHinchaznEnElItemListener());
-		GridBagConstraints gbc_rdbtnHinchaznEnEl = new GridBagConstraints();
-		gbc_rdbtnHinchaznEnEl.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnHinchaznEnEl.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnHinchaznEnEl.gridx = 1;
-		gbc_rdbtnHinchaznEnEl.gridy = 5;
-		pnlDesSintomas.add(rdbtnHinchaznEnEl, gbc_rdbtnHinchaznEnEl);
+		rdbtnHinchazonAbdomen = new JRadioButton("Hinchaz\u00f3n en el abdomen");
+		rdbtnHinchazonAbdomen.addItemListener(new RdbtnHinchaznEnElItemListener());
+		GridBagConstraints gbc_rdbtnHinchazonAbdomen = new GridBagConstraints();
+		gbc_rdbtnHinchazonAbdomen.anchor = GridBagConstraints.WEST;
+		gbc_rdbtnHinchazonAbdomen.insets = new Insets(0, 0, 5, 0);
+		gbc_rdbtnHinchazonAbdomen.gridx = 1;
+		gbc_rdbtnHinchazonAbdomen.gridy = 5;
+		pnlDesSintomas.add(rdbtnHinchazonAbdomen, gbc_rdbtnHinchazonAbdomen);
 		
-		rdbtnInflamacinEnEl = new JRadioButton("Inflamación en el abdomen");
-		rdbtnInflamacinEnEl.addItemListener(new RdbtnInflamacinEnElItemListener());
-		GridBagConstraints gbc_rdbtnInflamacinEnEl = new GridBagConstraints();
-		gbc_rdbtnInflamacinEnEl.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnInflamacinEnEl.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnInflamacinEnEl.gridx = 0;
-		gbc_rdbtnInflamacinEnEl.gridy = 6;
-		pnlDesSintomas.add(rdbtnInflamacinEnEl, gbc_rdbtnInflamacinEnEl);
+		rdbtnInflamacionAbdomen = new JRadioButton("Inflamaci\u00f3n en el abdomen");
+		rdbtnInflamacionAbdomen.addItemListener(new RdbtnInflamacinEnElItemListener());
+		GridBagConstraints gbc_rdbtnInflamacionAbdomen = new GridBagConstraints();
+		gbc_rdbtnInflamacionAbdomen.anchor = GridBagConstraints.WEST;
+		gbc_rdbtnInflamacionAbdomen.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnInflamacionAbdomen.gridx = 0;
+		gbc_rdbtnInflamacionAbdomen.gridy = 6;
+		pnlDesSintomas.add(rdbtnInflamacionAbdomen, gbc_rdbtnInflamacionAbdomen);
 		
-		rdbtnInflamacinEnPiernas = new JRadioButton("Inflamación en piernas, pie o tobillos");
-		rdbtnInflamacinEnPiernas.addItemListener(new RdbtnInflamacinEnPiernasItemListener());
-		GridBagConstraints gbc_rdbtnInflamacinEnPiernas = new GridBagConstraints();
-		gbc_rdbtnInflamacinEnPiernas.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnInflamacinEnPiernas.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnInflamacinEnPiernas.gridx = 1;
-		gbc_rdbtnInflamacinEnPiernas.gridy = 6;
-		pnlDesSintomas.add(rdbtnInflamacinEnPiernas, gbc_rdbtnInflamacinEnPiernas);
+		rdbtnInflamacionEnPiernas = new JRadioButton("Inflamaci\u00f3n en piernas, pie o tobillos");
+		rdbtnInflamacionEnPiernas.addItemListener(new RdbtnInflamacinEnPiernasItemListener());
+		GridBagConstraints gbc_rdbtnInflamacionEnPiernas = new GridBagConstraints();
+		gbc_rdbtnInflamacionEnPiernas.anchor = GridBagConstraints.WEST;
+		gbc_rdbtnInflamacionEnPiernas.insets = new Insets(0, 0, 5, 0);
+		gbc_rdbtnInflamacionEnPiernas.gridx = 1;
+		gbc_rdbtnInflamacionEnPiernas.gridy = 6;
+		pnlDesSintomas.add(rdbtnInflamacionEnPiernas, gbc_rdbtnInflamacionEnPiernas);
 		
-		rdbtnInflamacinEnGanglios = new JRadioButton("Inflamación en ganglios del cuello");
-		rdbtnInflamacinEnGanglios.addItemListener(new RdbtnInflamacinEnGangliosItemListener());
-		GridBagConstraints gbc_rdbtnInflamacinEnGanglios = new GridBagConstraints();
-		gbc_rdbtnInflamacinEnGanglios.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnInflamacinEnGanglios.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnInflamacinEnGanglios.gridx = 0;
-		gbc_rdbtnInflamacinEnGanglios.gridy = 7;
-		pnlDesSintomas.add(rdbtnInflamacinEnGanglios, gbc_rdbtnInflamacinEnGanglios);
+		rdbtnInflamacionEnGanglios = new JRadioButton("Inflamaci\u00f3n en ganglios del cuello");
+		rdbtnInflamacionEnGanglios.addItemListener(new RdbtnInflamacinEnGangliosItemListener());
+		GridBagConstraints gbc_rdbtnInflamacionEnGanglios = new GridBagConstraints();
+		gbc_rdbtnInflamacionEnGanglios.anchor = GridBagConstraints.WEST;
+		gbc_rdbtnInflamacionEnGanglios.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnInflamacionEnGanglios.gridx = 0;
+		gbc_rdbtnInflamacionEnGanglios.gridy = 7;
+		pnlDesSintomas.add(rdbtnInflamacionEnGanglios, gbc_rdbtnInflamacionEnGanglios);
 		
-		lblErupcionesORojeces = new JLabel("Erupciones o rojeces físicas");
+		lblErupcionesORojeces = new JLabel("Erupciones o rojeces f\u00edsicas");
 		GridBagConstraints gbc_lblErupcionesORojeces = new GridBagConstraints();
 		gbc_lblErupcionesORojeces.anchor = GridBagConstraints.WEST;
 		gbc_lblErupcionesORojeces.insets = new Insets(0, 0, 5, 5);
@@ -249,14 +253,14 @@ public class PanelDiagnosticar extends JPanel {
 		gbc_rdbtnOjosLenguaRojos.gridy = 9;
 		pnlDesSintomas.add(rdbtnOjosLenguaRojos, gbc_rdbtnOjosLenguaRojos);
 		
-		rdbtnErupcionesCutneasO = new JRadioButton("Erupciones cutáneas o descamación");
-		rdbtnErupcionesCutneasO.addItemListener(new RdbtnErupcionesCutneasOItemListener());
-		GridBagConstraints gbc_rdbtnErupcionesCutneasO = new GridBagConstraints();
-		gbc_rdbtnErupcionesCutneasO.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnErupcionesCutneasO.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnErupcionesCutneasO.gridx = 1;
-		gbc_rdbtnErupcionesCutneasO.gridy = 9;
-		pnlDesSintomas.add(rdbtnErupcionesCutneasO, gbc_rdbtnErupcionesCutneasO);
+		rdbtnErupcionesCutaneas = new JRadioButton("Erupciones cut\u00e1neas o descamaci\u00f3n");
+		rdbtnErupcionesCutaneas.addItemListener(new RdbtnErupcionesCutneasOItemListener());
+		GridBagConstraints gbc_rdbtnErupcionesCutaneas = new GridBagConstraints();
+		gbc_rdbtnErupcionesCutaneas.anchor = GridBagConstraints.WEST;
+		gbc_rdbtnErupcionesCutaneas.insets = new Insets(0, 0, 5, 0);
+		gbc_rdbtnErupcionesCutaneas.gridx = 1;
+		gbc_rdbtnErupcionesCutaneas.gridy = 9;
+		pnlDesSintomas.add(rdbtnErupcionesCutaneas, gbc_rdbtnErupcionesCutaneas);
 		
 		lblSistemaRespiratorio = new JLabel("Sistema respiratorio");
 		lblSistemaRespiratorio.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -312,32 +316,32 @@ public class PanelDiagnosticar extends JPanel {
 		gbc_lblSistemaUrinario.gridy = 13;
 		pnlDesSintomas.add(lblSistemaUrinario, gbc_lblSistemaUrinario);
 		
-		rdbtnMiccinExcesivaDurante = new JRadioButton("Micción excesiva durante la noche");
-		rdbtnMiccinExcesivaDurante.addItemListener(new RdbtnMiccinExcesivaDuranteItemListener());
-		GridBagConstraints gbc_rdbtnMiccinExcesivaDurante = new GridBagConstraints();
-		gbc_rdbtnMiccinExcesivaDurante.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnMiccinExcesivaDurante.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnMiccinExcesivaDurante.gridx = 0;
-		gbc_rdbtnMiccinExcesivaDurante.gridy = 14;
-		pnlDesSintomas.add(rdbtnMiccinExcesivaDurante, gbc_rdbtnMiccinExcesivaDurante);
+		rdbtnMiccionExcesivaNoche = new JRadioButton("Micci\u00f3n excesiva durante la noche");
+		rdbtnMiccionExcesivaNoche.addItemListener(new RdbtnMiccinExcesivaDuranteItemListener());
+		GridBagConstraints gbc_rdbtnMiccionExcesivaNoche = new GridBagConstraints();
+		gbc_rdbtnMiccionExcesivaNoche.anchor = GridBagConstraints.WEST;
+		gbc_rdbtnMiccionExcesivaNoche.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnMiccionExcesivaNoche.gridx = 0;
+		gbc_rdbtnMiccionExcesivaNoche.gridy = 14;
+		pnlDesSintomas.add(rdbtnMiccionExcesivaNoche, gbc_rdbtnMiccionExcesivaNoche);
 		
-		rdbtnRetencinDeLquidos = new JRadioButton("Retención de líquidos");
-		rdbtnRetencinDeLquidos.addItemListener(new RdbtnRetencinDeLquidosItemListener());
-		GridBagConstraints gbc_rdbtnRetencinDeLquidos = new GridBagConstraints();
-		gbc_rdbtnRetencinDeLquidos.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnRetencinDeLquidos.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnRetencinDeLquidos.gridx = 1;
-		gbc_rdbtnRetencinDeLquidos.gridy = 14;
-		pnlDesSintomas.add(rdbtnRetencinDeLquidos, gbc_rdbtnRetencinDeLquidos);
+		rdbtnRetencionDeLiquidos = new JRadioButton("Retenci\u00f3n de l\u00edquidos");
+		rdbtnRetencionDeLiquidos.addItemListener(new RdbtnRetencinDeLquidosItemListener());
+		GridBagConstraints gbc_rdbtnRetencionDeLiquidos = new GridBagConstraints();
+		gbc_rdbtnRetencionDeLiquidos.anchor = GridBagConstraints.WEST;
+		gbc_rdbtnRetencionDeLiquidos.insets = new Insets(0, 0, 5, 0);
+		gbc_rdbtnRetencionDeLiquidos.gridx = 1;
+		gbc_rdbtnRetencionDeLiquidos.gridy = 14;
+		pnlDesSintomas.add(rdbtnRetencionDeLiquidos, gbc_rdbtnRetencionDeLiquidos);
 		
-		rdbtnBajaProduccinDe = new JRadioButton("Baja producción de orina");
-		rdbtnBajaProduccinDe.addItemListener(new RdbtnBajaProduccinDeItemListener());
-		GridBagConstraints gbc_rdbtnBajaProduccinDe = new GridBagConstraints();
-		gbc_rdbtnBajaProduccinDe.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnBajaProduccinDe.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnBajaProduccinDe.gridx = 0;
-		gbc_rdbtnBajaProduccinDe.gridy = 15;
-		pnlDesSintomas.add(rdbtnBajaProduccinDe, gbc_rdbtnBajaProduccinDe);
+		rdbtnBajaProduccionOrina = new JRadioButton("Baja producci\u00f3n de orina");
+		rdbtnBajaProduccionOrina.addItemListener(new RdbtnBajaProduccinDeItemListener());
+		GridBagConstraints gbc_rdbtnBajaProduccionOrina = new GridBagConstraints();
+		gbc_rdbtnBajaProduccionOrina.anchor = GridBagConstraints.WEST;
+		gbc_rdbtnBajaProduccionOrina.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnBajaProduccionOrina.gridx = 0;
+		gbc_rdbtnBajaProduccionOrina.gridy = 15;
+		pnlDesSintomas.add(rdbtnBajaProduccionOrina, gbc_rdbtnBajaProduccionOrina);
 		
 		lblSistemaDigestivo = new JLabel("Sistema digestivo");
 		GridBagConstraints gbc_lblSistemaDigestivo = new GridBagConstraints();
@@ -366,7 +370,7 @@ public class PanelDiagnosticar extends JPanel {
 		gbc_rdbtnFaltaDeApetito.gridy = 17;
 		pnlDesSintomas.add(rdbtnFaltaDeApetito, gbc_rdbtnFaltaDeApetito);
 		
-		lblOtrosSntomas = new JLabel("Otros síntomas");
+		lblOtrosSntomas = new JLabel("Otros s\u00edntomas");
 		GridBagConstraints gbc_lblOtrosSntomas = new GridBagConstraints();
 		gbc_lblOtrosSntomas.anchor = GridBagConstraints.WEST;
 		gbc_lblOtrosSntomas.insets = new Insets(0, 0, 5, 5);
@@ -384,23 +388,23 @@ public class PanelDiagnosticar extends JPanel {
 		gbc_rdbtnCansancio.gridy = 19;
 		pnlDesSintomas.add(rdbtnCansancio, gbc_rdbtnCansancio);
 		
-		rdbtnFiebre_1 = new JRadioButton("Fiebre");
-		rdbtnFiebre_1.addItemListener(new RdbtnFiebre_1ItemListener());
-		GridBagConstraints gbc_rdbtnFiebre_1 = new GridBagConstraints();
-		gbc_rdbtnFiebre_1.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnFiebre_1.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnFiebre_1.gridx = 1;
-		gbc_rdbtnFiebre_1.gridy = 19;
-		pnlDesSintomas.add(rdbtnFiebre_1, gbc_rdbtnFiebre_1);
+		rdbtnFiebre = new JRadioButton("Fiebre");
+		rdbtnFiebre.addItemListener(new RdbtnFiebre_1ItemListener());
+		GridBagConstraints gbc_rdbtnFiebre = new GridBagConstraints();
+		gbc_rdbtnFiebre.anchor = GridBagConstraints.WEST;
+		gbc_rdbtnFiebre.insets = new Insets(0, 0, 5, 0);
+		gbc_rdbtnFiebre.gridx = 1;
+		gbc_rdbtnFiebre.gridy = 19;
+		pnlDesSintomas.add(rdbtnFiebre, gbc_rdbtnFiebre);
 		
-		rdbtnVrtigo = new JRadioButton("Vértigo");
-		rdbtnVrtigo.addItemListener(new RdbtnVrtigoItemListener());
-		GridBagConstraints gbc_rdbtnVrtigo = new GridBagConstraints();
-		gbc_rdbtnVrtigo.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnVrtigo.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnVrtigo.gridx = 0;
-		gbc_rdbtnVrtigo.gridy = 20;
-		pnlDesSintomas.add(rdbtnVrtigo, gbc_rdbtnVrtigo);
+		rdbtnVertigo = new JRadioButton("V\u00e9rtigo");
+		rdbtnVertigo.addItemListener(new RdbtnVrtigoItemListener());
+		GridBagConstraints gbc_rdbtnVertigo = new GridBagConstraints();
+		gbc_rdbtnVertigo.anchor = GridBagConstraints.WEST;
+		gbc_rdbtnVertigo.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnVertigo.gridx = 0;
+		gbc_rdbtnVertigo.gridy = 20;
+		pnlDesSintomas.add(rdbtnVertigo, gbc_rdbtnVertigo);
 		
 		rdbtnMareos = new JRadioButton("Mareos");
 		rdbtnMareos.addItemListener(new RdbtnMareosItemListener());
@@ -411,14 +415,14 @@ public class PanelDiagnosticar extends JPanel {
 		gbc_rdbtnMareos.gridy = 20;
 		pnlDesSintomas.add(rdbtnMareos, gbc_rdbtnMareos);
 		
-		rdbtnPrdidaDeConocimiento = new JRadioButton("Pérdida de conocimiento");
-		rdbtnPrdidaDeConocimiento.addItemListener(new RdbtnPrdidaDeConocimientoItemListener());
-		GridBagConstraints gbc_rdbtnPrdidaDeConocimiento = new GridBagConstraints();
-		gbc_rdbtnPrdidaDeConocimiento.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnPrdidaDeConocimiento.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnPrdidaDeConocimiento.gridx = 0;
-		gbc_rdbtnPrdidaDeConocimiento.gridy = 21;
-		pnlDesSintomas.add(rdbtnPrdidaDeConocimiento, gbc_rdbtnPrdidaDeConocimiento);
+		rdbtnPerdidaDeConocimiento = new JRadioButton("P\u00e9rdida de conocimiento");
+		rdbtnPerdidaDeConocimiento.addItemListener(new RdbtnPrdidaDeConocimientoItemListener());
+		GridBagConstraints gbc_rdbtnPerdidaDeConocimiento = new GridBagConstraints();
+		gbc_rdbtnPerdidaDeConocimiento.anchor = GridBagConstraints.WEST;
+		gbc_rdbtnPerdidaDeConocimiento.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnPerdidaDeConocimiento.gridx = 0;
+		gbc_rdbtnPerdidaDeConocimiento.gridy = 21;
+		pnlDesSintomas.add(rdbtnPerdidaDeConocimiento, gbc_rdbtnPerdidaDeConocimiento);
 		
 		rdbtnDebilidad = new JRadioButton("Debilidad");
 		rdbtnDebilidad.addItemListener(new RdbtnDebilidadItemListener());
@@ -438,25 +442,25 @@ public class PanelDiagnosticar extends JPanel {
 		gbc_rdbtnPalidez.gridy = 22;
 		pnlDesSintomas.add(rdbtnPalidez, gbc_rdbtnPalidez);
 		
-		rdbtnSudoracin = new JRadioButton("Sudoración");
-		rdbtnSudoracin.addItemListener(new RdbtnSudoracinItemListener());
-		GridBagConstraints gbc_rdbtnSudoracin = new GridBagConstraints();
-		gbc_rdbtnSudoracin.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnSudoracin.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnSudoracin.gridx = 1;
-		gbc_rdbtnSudoracin.gridy = 22;
-		pnlDesSintomas.add(rdbtnSudoracin, gbc_rdbtnSudoracin);
+		rdbtnSudoracion = new JRadioButton("Sudoraci\u00f3n");
+		rdbtnSudoracion.addItemListener(new RdbtnSudoracinItemListener());
+		GridBagConstraints gbc_rdbtnSudoracion = new GridBagConstraints();
+		gbc_rdbtnSudoracion.anchor = GridBagConstraints.WEST;
+		gbc_rdbtnSudoracion.insets = new Insets(0, 0, 5, 0);
+		gbc_rdbtnSudoracion.gridx = 1;
+		gbc_rdbtnSudoracion.gridy = 22;
+		pnlDesSintomas.add(rdbtnSudoracion, gbc_rdbtnSudoracion);
 		
-		rdbtnMembranasMucosasEn = new JRadioButton("Membranas mucosas en la lengua");
-		rdbtnMembranasMucosasEn.addItemListener(new RdbtnMembranasMucosasEnItemListener());
-		GridBagConstraints gbc_rdbtnMembranasMucosasEn = new GridBagConstraints();
-		gbc_rdbtnMembranasMucosasEn.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnMembranasMucosasEn.insets = new Insets(0, 0, 0, 5);
-		gbc_rdbtnMembranasMucosasEn.gridx = 0;
-		gbc_rdbtnMembranasMucosasEn.gridy = 23;
-		pnlDesSintomas.add(rdbtnMembranasMucosasEn, gbc_rdbtnMembranasMucosasEn);
+		rdbtnMembranasMucosasLengua = new JRadioButton("Membranas mucosas en la lengua");
+		rdbtnMembranasMucosasLengua.addItemListener(new RdbtnMembranasMucosasEnItemListener());
+		GridBagConstraints gbc_rdbtnMembranasMucosasLengua = new GridBagConstraints();
+		gbc_rdbtnMembranasMucosasLengua.anchor = GridBagConstraints.WEST;
+		gbc_rdbtnMembranasMucosasLengua.insets = new Insets(0, 0, 0, 5);
+		gbc_rdbtnMembranasMucosasLengua.gridx = 0;
+		gbc_rdbtnMembranasMucosasLengua.gridy = 23;
+		pnlDesSintomas.add(rdbtnMembranasMucosasLengua, gbc_rdbtnMembranasMucosasLengua);
 		
-		rdbtnDescamacin = new JRadioButton("Descamación");
+		rdbtnDescamacin = new JRadioButton("Descamaci\u00f3n");
 		rdbtnDescamacin.addItemListener(new RdbtnDescamacinItemListener());
 		GridBagConstraints gbc_rdbtnDescamacin = new GridBagConstraints();
 		gbc_rdbtnDescamacin.anchor = GridBagConstraints.WEST;
@@ -505,6 +509,8 @@ public class PanelDiagnosticar extends JPanel {
 		pnlDiagnostico.add(scrollPane_1, gbc_scrollPane_1);
 		
 		taDiagnostico = new JTextArea();
+		taDiagnostico.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		taDiagnostico.setEditable(false);
 		scrollPane_1.setViewportView(taDiagnostico);
 		
 		scrollPane_2 = new JScrollPane();
@@ -517,19 +523,22 @@ public class PanelDiagnosticar extends JPanel {
 		pnlDiagnostico.add(scrollPane_2, gbc_scrollPane_2);
 		
 		taTratamiento = new JTextArea();
+		taTratamiento.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		taTratamiento.setEditable(false);
 		scrollPane_2.setViewportView(taTratamiento);
 		
 		btnGenerarInforme = new JButton("Generar Informe");
+		btnGenerarInforme.addActionListener(new BtnGenerarInformeActionListener());
 		btnGenerarInforme.setIcon(new ImageIcon(PanelDiagnosticar.class.getResource("/presentacion/Imagenes/file.png")));
 		GridBagConstraints gbc_btnGenerarInforme = new GridBagConstraints();
 		gbc_btnGenerarInforme.insets = new Insets(0, 0, 5, 5);
 		gbc_btnGenerarInforme.gridx = 1;
 		gbc_btnGenerarInforme.gridy = 5;
 		pnlDiagnostico.add(btnGenerarInforme, gbc_btnGenerarInforme);
-		
-		
-		
-
+	}
+	
+	private Component getPanel() {
+		return tabbedPane;
 	}
 
 	private class RdbtnArritmiasItemListener implements ItemListener {
@@ -542,6 +551,7 @@ public class PanelDiagnosticar extends JPanel {
 			    }
 		}
 	}
+	
 	private class RdbtnAlteracionesDelRitmoItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -552,6 +562,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnPulsoIrregularOItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -562,6 +573,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnDolorDePechoItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -572,6 +584,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnDolorDeBrazoItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -582,6 +595,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnHinchaznEnPiesItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -592,6 +606,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnHinchaznEnElItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -602,6 +617,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnInflamacinEnElItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -612,6 +628,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnInflamacinEnPiernasItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -622,6 +639,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnInflamacinEnGangliosItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -632,6 +650,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnOjosLenguaRojosItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -642,6 +661,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnErupcionesCutneasOItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -652,6 +672,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnMiccinExcesivaDuranteItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -662,6 +683,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnRetencinDeLquidosItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -672,6 +694,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnBajaProduccinDeItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -682,6 +705,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnGanasDeVomitarItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -692,6 +716,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnFaltaDeApetitoItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -702,6 +727,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnCansancioItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -712,6 +738,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnFiebre_1ItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -722,6 +749,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnVrtigoItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -732,6 +760,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnMareosItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -742,6 +771,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnPrdidaDeConocimientoItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -752,6 +782,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnDebilidadItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -762,6 +793,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnPalidezItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -772,6 +804,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnSudoracinItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -782,6 +815,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnMembranasMucosasEnItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -792,127 +826,139 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class BtnLimpiarSeleccionActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			rdbtnArritmias.setSelected(false);
 			rdbtnAlteracionesDelRitmo.setSelected(false);
-			rdbtnPulsoIrregularO.setSelected(false);
+			rdbtnPulsoIrregular.setSelected(false);
 			rdbtnDolorDePecho.setSelected(false);
 			rdbtnDolorDeBrazo.setSelected(false);
 			rdbtnHinchaznEnPies.setSelected(false);
-			rdbtnHinchaznEnEl.setSelected(false);
-			rdbtnInflamacinEnEl.setSelected(false);
-			rdbtnInflamacinEnPiernas.setSelected(false);
-			rdbtnInflamacinEnGanglios.setSelected(false);
-			rdbtnErupcionesCutneasO.setSelected(false);
+			rdbtnHinchazonAbdomen.setSelected(false);
+			rdbtnInflamacionAbdomen.setSelected(false);
+			rdbtnInflamacionEnPiernas.setSelected(false);
+			rdbtnInflamacionEnGanglios.setSelected(false);
+			rdbtnErupcionesCutaneas.setSelected(false);
 			rdbtnOjosLenguaRojos.setSelected(false);
-			rdbtnMiccinExcesivaDurante.setSelected(false);
-			rdbtnRetencinDeLquidos.setSelected(false);
-			rdbtnBajaProduccinDe.setSelected(false);
+			rdbtnMiccionExcesivaNoche.setSelected(false);
+			rdbtnRetencionDeLiquidos.setSelected(false);
+			rdbtnBajaProduccionOrina.setSelected(false);
 			rdbtnGanasDeVomitar.setSelected(false);
 			rdbtnFaltaDeApetito.setSelected(false);
-			rdbtnMembranasMucosasEn.setSelected(false);
+			rdbtnMembranasMucosasLengua.setSelected(false);
 			rdbtnPalidez.setSelected(false);
-			rdbtnSudoracin.setSelected(false);
-			rdbtnPrdidaDeConocimiento.setSelected(false);
+			rdbtnSudoracion.setSelected(false);
+			rdbtnPerdidaDeConocimiento.setSelected(false);
 			rdbtnDebilidad.setSelected(false);
-			rdbtnVrtigo.setSelected(false);
+			rdbtnVertigo.setSelected(false);
 			rdbtnMareos.setSelected(false);
 			rdbtnCansancio.setSelected(false);
-			rdbtnFiebre_1.setSelected(false);
-			rdbtnDescamacin.setSelected(false);;
-			
+			rdbtnFiebre.setSelected(false);
+			rdbtnDescamacin.setSelected(false);
+			rdbtnDificultadParaRespirar.setSelected(false);
+			rdbtnTos.setSelected(false);
+			rdbtnTosConSangre.setSelected(false);
+			rdbtnInfeccionesRespiratorias.setSelected(false);
 			
 		}
 	}
+	
 	private class BtnDiagnosticarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			if(diagnostico.isDolordepecho() && diagnostico.isDolorbrazoizq() && diagnostico.isSudoracion() 
 					&& diagnostico.isMareos() && diagnostico.isGanasvomitar() && diagnostico.isDificultadrespirar() 
 					&& diagnostico.isPerdidaconocimiento()){
-				diagnostico.setDiagnostico("Infarto de miocardio o ataque cardíaco.");
+				diagnostico.setDiagnostico("Infarto de miocardio o ataque card\u00edaco.");
 				diagnostico.setTratamiento("Se recomienda una dieta para la enfermedad coronaria. "
-						+ "Puede recibir nitroglicerina y morfina para el dolor y medicamento para los coágulos de sangre. "
+						+ "Puede recibir nitroglicerina y morfina para el dolor y medicamento para los co\u00e1gulos de sangre. "
 						+ "Hay procedimientos de emergencia como la angioplastia.");
 			}else if(diagnostico.isDolordepecho() && diagnostico.isDificultadrespirar() && diagnostico.isCansancio() 
 					&& diagnostico.isMareos() && diagnostico.isTos() && diagnostico.isPusloirregular()
 					&& diagnostico.isFaltaapetito() && diagnostico.isHinchazonpies()){
-				diagnostico.setDiagnostico("Miocardiopatía dilatada.");
-				diagnostico.setTratamiento("Limitar la cantidada de bebida alcohólica y la cantidad de sal (sodio)  en la dieta. "
-						+ "Tomar medicamentos para ayudar a evitar que la insuficiencia cardíaca empeore. Pueden llevarse a cabo "
-						+ "procedimientos como la implantación de un marcapasos, un desfibrilador, una cirugía de revascularización "
-						+ "coronaria o una angioplastia para mejorar el flujo de sangre y reparación o reemplazo de válvulas.");
+				diagnostico.setDiagnostico("Miocardiopat\u00eda dilatada.");
+				diagnostico.setTratamiento("Limitar la cantidada de bebida alcoh\u00f3lica y la cantidad de sal (sodio) en la dieta. "
+						+ "Tomar medicamentos para ayudar a evitar que la insuficiencia card\u00edaca empeore. Pueden llevarse a cabo "
+						+ "procedimientos como la implantaci\u00f3n de un marcapasos, un desfibrilador, una cirug\u00eda de revascularizaci\u00f3n "
+						+ "coronaria o una angioplastia para mejorar el flujo de sangre y reparaci\u00f3n o reemplazo de v\u00e1lvulas.");
 				
 			}else if(diagnostico.isDolordepecho() && diagnostico.isPerdidaconocimiento() && diagnostico.isCansancio() 
 					&& diagnostico.isMareos() && diagnostico.isVertigo() && diagnostico.isDificultadrespirar()
 					&& diagnostico.isPusloirregular()){
-				diagnostico.setDiagnostico("Miocardiopatía hipertrófica.");
+				diagnostico.setDiagnostico("Miocardiopat\u00eda hipertr\u00f3fica.");
 				diagnostico.setTratamiento("Medicamentos para tratar el ritmo anormal, anticoagulantes, usar un marcapasos permanente "
-						+ "para controlar los latidos cardíacos o un desfibrilador que reconozca el ritmo cardíaco.");
+						+ "para controlar los latidos card\u00edacos o un desfibrilador que reconozca el ritmo card\u00edaco.");
 				
 			}else if(diagnostico.isHinchazonabdomen() && diagnostico.isDificultadrespirar() && diagnostico.isRetencionliquidos()
 					&& diagnostico.isTos() && diagnostico.isFaltaapetito() && diagnostico.isPusloirregular() 
 					&& diagnostico.isHinchazonpies() && diagnostico.isBajaproduccionorina()){
-				diagnostico.setDiagnostico("Miocardiopatía restrictiva.");
-				diagnostico.setTratamiento("Se trata la afección causante. Para controlar los síntomas y prevenir problemas se pueden usar "
-						+ "medicamentos anticoagulantes, quimioterapia, diuréticos para eliminar líquidos y medicamentos para controlar el "
-						+ "ritmo cardíaco.");
+				diagnostico.setDiagnostico("Miocardiopat\u00eda restrictiva.");
+				diagnostico.setTratamiento("Se trata la afecci\u00f3n causante. Para controlar los s\u00edntomas y prevenir problemas se pueden usar "
+						+ "medicamentos anticoagulantes, quimioterapia, diur\u00e9ticos para eliminar l\u00edquidos y medicamentos para controlar el "
+						+ "ritmo card\u00edaco.");
 				
 			}else if(diagnostico.isDificultadrespirar() && diagnostico.isAlteracionesritmo() && diagnostico.isTos() 
 					&& diagnostico.isCansancio() && diagnostico.isHinchazonpies() && diagnostico.isInfeccionesrespirar()
 					&& diagnostico.isDolordepecho()){
 				diagnostico.setDiagnostico("Estenosis mitral.");
-				diagnostico.setTratamiento("Las personas con síntomas leves o sin ningún síntoma no necesitan tratamiento. En caso de síntomas "
-						+ "graves, los medicamentos que se pueden utilizar son diuréticos, betabloqueadores, inhibidores, digoxina, medicamentos "
-						+ "para tratar el ritmo cardíaco y anticoagulantes.");
+				diagnostico.setTratamiento("Las personas con s\u00edntomas leves o sin ning\u00fan s\u00edntoma no necesitan tratamiento. En caso de s\u00edntomas "
+						+ "graves, los medicamentos que se pueden utilizar son diur\u00e9ticos, betabloqueadores, inhibidores, digoxina, medicamentos "
+						+ "para tratar el ritmo card\u00edaco y anticoagulantes.");
 				
 			}else if(diagnostico.isDificultadrespirar() && diagnostico.isArritmias() && diagnostico.isTos()
 					&& diagnostico.isCansancio() && diagnostico.isMiccionexcesiva() && diagnostico.isPusloirregular()){
 				diagnostico.setDiagnostico("Insuficiencia mitral.");
-				diagnostico.setTratamiento("A las personas con hipertensión arterial se les puede administrar medicamentos para reducir la tensión "
-						+ "sobre el corazón y aliviar los síntomas. Otros medicamentos que se pueden utilizar son betabloqueadores, inhibidores, "
-						+ "anticoagulantes, medicamentos para controlar el ritmo cardíaco y diuréticos. También ayuda una dieta baja en sal (sodio) "
-						+ "y reducir la actividad. Se puede necesitar cirugía para reparar o reemplazar la válvula.");
+				diagnostico.setTratamiento("A las personas con hipertensi\u00f3n arterial se les puede administrar medicamentos para reducir la tensi\u00f3n "
+						+ "sobre el coraz\u00f3n y aliviar los s\u00edntomas. Otros medicamentos que se pueden utilizar son betabloqueadores, inhibidores, "
+						+ "anticoagulantes, medicamentos para controlar el ritmo card\u00edaco y diur\u00e9ticos. Tambi\u00e9n ayuda una dieta baja en sal (sodio) "
+						+ "y reducir la actividad. Se puede necesitar cirug\u00eda para reparar o reemplazar la v\u00e1lvula.");
+				
 			}else if(diagnostico.isDolordepecho() && diagnostico.isTossangre() && diagnostico.isDificultadrespirar()
 					&& diagnostico.isCansancio() && diagnostico.isVertigo() && diagnostico.isMareos()){
-				diagnostico.setDiagnostico("Estenosis aórtica.");
-				diagnostico.setTratamiento("No practicar deportes competitivos, uso de medicamentos para controlar el ritmo cardíaco, como diuréticos, "
-						+ "nitratos y betabloqueadores. También tiene que tratarse la hipertensión arterial. La cirugía también puede usarse en caso de "
-						+ "gravedad como el reparo o reemplazo de la válvula");
+				diagnostico.setDiagnostico("Estenosis a\u00f3rtica.");
+				diagnostico.setTratamiento("No practicar deportes competitivos, uso de medicamentos para controlar el ritmo card\u00edaco, como diur\u00e9ticos, "
+						+ "nitratos y betabloqueadores. Tambi\u00e9n tiene que tratarse la hipertensi\u00f3n arterial. La cirug\u00eda tambi\u00e9n puede usarse en caso de "
+						+ "gravedad como el reparo o reemplazo de la v\u00e1lvula");
 				
 			}else if(diagnostico.isPusloirregular() && diagnostico.isDolordepecho() && diagnostico.isMareos() 
 					&& diagnostico.isCansancio() && diagnostico.isDificultadrespirar() && diagnostico.isDebilidad()
 					&& diagnostico.isHinchazonpies() && diagnostico.isHinchazonabdomen()){
-				diagnostico.setDiagnostico("Insuficiencia aórtica.");
-				diagnostico.setTratamiento("Si la presión arterial es alta, se recomienda usar medicamentos antihipertensivos para ayuda a disminuir "
-						+ "los síntomas. ");
+				diagnostico.setDiagnostico("Insuficiencia a\u00f3rtica.");
+				diagnostico.setTratamiento("Si la presi\u00f3n arterial es alta, se recomienda usar medicamentos antihipertensivos para ayuda a disminuir "
+						+ "los s\u00edntomas. ");
+				
 			}else if(diagnostico.isDolordepecho() && diagnostico.isMareos() && diagnostico.isVertigo() 
 					&& diagnostico.isPalidez() && diagnostico.isDificultadrespirar() && diagnostico.isSudoracion()
 					&& diagnostico.isPusloirregular()){
 				diagnostico.setDiagnostico("Arritmia.");
-				diagnostico.setTratamiento("Si la arritmia es grave, se usan técnicas como la terapia de shock eléctrico, la implantación de un marcapasos "
-						+ "cardíaco temporal o el uso de medicamentos por vena o por vía oral.");
+				diagnostico.setTratamiento("Si la arritmia es grave, se usan t\u00e9cnicas como la terapia de shock el\u00e9ctrico, la implantaci\u00f3n de un marcapasos "
+						+ "card\u00edaco temporal o el uso de medicamentos por vena o por v\u00eda oral.");
+				
 			}else if(diagnostico.isMiccionexcesiva() && diagnostico.isCansancio() && diagnostico.isDificultadrespirar()
 					&& diagnostico.isInflamacionabdomen() && diagnostico.isInflamacionpiernas()){
-				diagnostico.setDiagnostico("Amiloidosis cardíaca.");
-				diagnostico.setTratamiento("Reducción de sal (sodio) y líquidos en la dieta. Uso de medicamentos como diuréticos para eliminar líquidos, "
+				diagnostico.setDiagnostico("Amiloidosis card\u00edaca.");
+				diagnostico.setTratamiento("Reducci\u00f3n de sal (sodio) y l\u00edquidos en la dieta. Uso de medicamentos como diur\u00e9ticos para eliminar l\u00edquidos, "
 						+ "digoxina o betabloqueadores. Otros tratamientos pueden abarcar quimioterapia, uso de desfibriladores, marcapasos o medicamentos "
 						+ "antiinflamatorios.");
 				
 			}else if(diagnostico.isFiebre() && diagnostico.isOjoslenguarojos() && diagnostico.isMembranasmucosas() && diagnostico.isHinchazonpies()
 					&& diagnostico.isErupcionescutaneas() && diagnostico.isInflamancionganglios() && diagnostico.isDescamacion()){
 				diagnostico.setDiagnostico("Enfermedad de Kawasaki.");
-				diagnostico.setTratamiento("El tratamiento estándar para esta enfermedad es la gammaglobulina intravenosa que se administra en dosis altas. "
-						+ "También se administra el ácido acetilsalicílico a la vez.");
+				diagnostico.setTratamiento("El tratamiento est\u00e1ndar para esta enfermedad es la gammaglobulina intravenosa que se administra en dosis altas. "
+						+ "Tambi\u00e9n se administra el \u00e1cido acetilsalic\u00edlico a la vez.");
 				
 			}else{
-				diagnostico.setDiagnostico("Los síntomas seleccionados no especifican un diagnóstico concluyente.");
+				diagnostico.setDiagnostico("Los s\u00edntomas seleccionados no especifican un diagn\u00f3stico concluyente.");
 			}
+			
 			taDiagnostico.setText(diagnostico.getDiagnostico());
 			taTratamiento.setText(diagnostico.getTratamiento());
 			
+			tabbedPane.setSelectedIndex(1);
+			
 		}
 	}
+	
 	private class RdbtnDescamacinItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -923,6 +969,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnDificultadParaRespirarItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -933,6 +980,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnTosItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -943,6 +991,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnTosConSangreItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -953,6 +1002,7 @@ public class PanelDiagnosticar extends JPanel {
 		    }
 		}
 	}
+	
 	private class RdbtnInfeccionesRespiratoriasItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -964,5 +1014,40 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 
-	
+	private class BtnGenerarInformeActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			if (JOptionPane.showConfirmDialog(getPanel(),
+					"�Desea guardar los datos del diagn\u00f3stico en un fichero de texto?", "Guardar...",
+					JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+				FileWriter fichero = null;
+				PrintWriter pw = null;
+				try {
+					fichero = new FileWriter("Diagn\u00f3stico preliminar.txt");
+					pw = new PrintWriter(fichero);
+
+					pw.println("Resultado: " + taDiagnostico.getText());
+					
+					if (taTratamiento.getText().length() != 0){
+						pw.println();
+						pw.print("Tratamiento: " + taTratamiento.getText());
+					}
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					try {
+						if (null != fichero){
+							fichero.close();
+						}
+						
+						JOptionPane.showMessageDialog(getPanel(), "El archivo ha sido guardado correctamente", "Guardar...",
+								JOptionPane.INFORMATION_MESSAGE);
+					} catch (Exception e2) {
+						e2.printStackTrace();
+					}
+				}
+			}
+		}
+	}
+
 }
