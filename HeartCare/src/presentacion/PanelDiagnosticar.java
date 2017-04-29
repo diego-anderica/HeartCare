@@ -1017,7 +1017,7 @@ public class PanelDiagnosticar extends JPanel {
 	private class BtnGenerarInformeActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			if (JOptionPane.showConfirmDialog(getPanel(),
-					"¿Desea guardar los datos del diagn\u00f3stico en un fichero de texto?", "Guardar...",
+					"\u00BFDesea guardar los datos del diagn\u00f3stico en un fichero de texto?", "Guardar...",
 					JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 				FileWriter fichero = null;
 				PrintWriter pw = null;
