@@ -29,6 +29,7 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
+import java.awt.Dimension;
 
 public class VentanaPrincipal {
 
@@ -77,10 +78,11 @@ public class VentanaPrincipal {
 	 */
 	private void initialize() {
 		frmHeartCare = new JFrame();
+		frmHeartCare.setMinimumSize(new Dimension(1200, 700));
 		frmHeartCare.addWindowListener(new FrmHeartCareWindowListener());
 		frmHeartCare.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/presentacion/Imagenes/cardiograma24.png")));
 		frmHeartCare.setTitle("HeartCare - Sistema Experto");
-		frmHeartCare.setBounds(100, 100, 1005, 763);
+		frmHeartCare.setBounds(100, 100, 1000, 823);
 		frmHeartCare.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
 		menuBar = new JMenuBar();

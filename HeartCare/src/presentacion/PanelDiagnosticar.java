@@ -6,10 +6,7 @@ import java.awt.BorderLayout;
 import javax.swing.JTabbedPane;
 import javax.swing.border.BevelBorder;
 import javax.swing.JScrollPane;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.AbstractListModel;
-import javax.swing.JToolBar;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -18,8 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.JTextArea;
-import java.awt.FlowLayout;
-import javax.swing.JRadioButton;
+import javax.swing.JCheckBox;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ItemListener;
@@ -45,44 +41,44 @@ public class PanelDiagnosticar extends JPanel {
 	private JButton btnGenerarInforme;
 	private JPanel pnlDesSintomas;
 	private JLabel lblProblemasDeCorazon;
-	private JRadioButton rdbtnArritmias;
-	private JRadioButton rdbtnAlteracionesDelRitmo;
-	private JRadioButton rdbtnPulsoIrregular;
+	private JCheckBox chckbxArritmias;
+	private JCheckBox chckbxAlteracionesDelRitmo;
+	private JCheckBox chckbxPulsoIrregular;
 	private JLabel lblDoloresOHinchazones;
-	private JRadioButton rdbtnDolorDePecho;
-	private JRadioButton rdbtnDolorDeBrazo;
-	private JRadioButton rdbtnHinchaznEnPies;
-	private JRadioButton rdbtnHinchazonAbdomen;
-	private JRadioButton rdbtnInflamacionAbdomen;
-	private JRadioButton rdbtnInflamacionEnPiernas;
-	private JRadioButton rdbtnInflamacionEnGanglios;
+	private JCheckBox chckbxDolorDePecho;
+	private JCheckBox chckbxDolorDeBrazo;
+	private JCheckBox chckbxHinchaznEnPies;
+	private JCheckBox chckbxHinchazonAbdomen;
+	private JCheckBox chckbxInflamacionAbdomen;
+	private JCheckBox chckbxInflamacionEnPiernas;
+	private JCheckBox chckbxInflamacionEnGanglios;
 	private JLabel lblErupcionesORojeces;
-	private JRadioButton rdbtnErupcionesCutaneas;
-	private JRadioButton rdbtnOjosLenguaRojos;
+	private JCheckBox chckbxErupcionesCutaneas;
+	private JCheckBox chckbxOjosLenguaRojos;
 	private JLabel lblSistemaUrinario;
-	private JRadioButton rdbtnMiccionExcesivaNoche;
-	private JRadioButton rdbtnRetencionDeLiquidos;
-	private JRadioButton rdbtnBajaProduccionOrina;
+	private JCheckBox chckbxMiccionExcesivaNoche;
+	private JCheckBox chckbxRetencionDeLiquidos;
+	private JCheckBox chckbxBajaProduccionOrina;
 	private JLabel lblSistemaDigestivo;
-	private JRadioButton rdbtnGanasDeVomitar;
-	private JRadioButton rdbtnFaltaDeApetito;
+	private JCheckBox chckbxGanasDeVomitar;
+	private JCheckBox chckbxFaltaDeApetito;
 	private JLabel lblOtrosSntomas;
-	private JRadioButton rdbtnMembranasMucosasLengua;
-	private JRadioButton rdbtnPalidez;
-	private JRadioButton rdbtnSudoracion;
-	private JRadioButton rdbtnPerdidaDeConocimiento;
-	private JRadioButton rdbtnDebilidad;
-	private JRadioButton rdbtnVertigo;
-	private JRadioButton rdbtnMareos;
-	private JRadioButton rdbtnCansancio;
-	private JRadioButton rdbtnFiebre;
-	Diagnostico diagnostico;
-	private JRadioButton rdbtnDescamacin;
+	private JCheckBox chckbxMembranasMucosasLengua;
+	private JCheckBox chckbxPalidez;
+	private JCheckBox chckbxSudoracion;
+	private JCheckBox chckbxPerdidaDeConocimiento;
+	private JCheckBox chckbxDebilidad;
+	private JCheckBox chckbxVertigo;
+	private JCheckBox chckbxMareos;
+	private JCheckBox chckbxCansancio;
+	private JCheckBox chckbxFiebre;
+	private JCheckBox chckbxDescamacion;
 	private JLabel lblSistemaRespiratorio;
-	private JRadioButton rdbtnDificultadParaRespirar;
-	private JRadioButton rdbtnTos;
-	private JRadioButton rdbtnTosConSangre;
-	private JRadioButton rdbtnInfeccionesRespiratorias;
+	private JCheckBox chckbxDificultadParaRespirar;
+	private JCheckBox chckbxTos;
+	private JCheckBox chckbxTosConSangre;
+	private JCheckBox chckbxInfeccionesRespiratorias;
+	Diagnostico diagnostico;
 
 	/**
 	 * Create the panel.
@@ -99,9 +95,9 @@ public class PanelDiagnosticar extends JPanel {
 		pnlSintomas = new JPanel();
 		tabbedPane.addTab("S\u00EDntomas", null, pnlSintomas, null);
 		GridBagLayout gbl_pnlSintomas = new GridBagLayout();
-		gbl_pnlSintomas.columnWidths = new int[]{623, 0, 0, 0};
+		gbl_pnlSintomas.columnWidths = new int[]{623, 0, 0, 0, 0, 0};
 		gbl_pnlSintomas.rowHeights = new int[]{326, 0, 0, 0};
-		gbl_pnlSintomas.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnlSintomas.columnWeights = new double[]{0.0, 0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		gbl_pnlSintomas.rowWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
 		pnlSintomas.setLayout(gbl_pnlSintomas);
 		
@@ -135,33 +131,33 @@ public class PanelDiagnosticar extends JPanel {
 		gbc_lblProblemasDeCorazon.gridy = 0;
 		pnlDesSintomas.add(lblProblemasDeCorazon, gbc_lblProblemasDeCorazon);
 		
-		rdbtnArritmias = new JRadioButton("Arritmias");
-		rdbtnArritmias.addItemListener(new RdbtnArritmiasItemListener());
-		rdbtnArritmias.setHorizontalTextPosition(SwingConstants.RIGHT);
-		GridBagConstraints gbc_rdbtnArritmias = new GridBagConstraints();
-		gbc_rdbtnArritmias.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnArritmias.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnArritmias.gridx = 0;
-		gbc_rdbtnArritmias.gridy = 1;
-		pnlDesSintomas.add(rdbtnArritmias, gbc_rdbtnArritmias);
+		chckbxArritmias = new JCheckBox("Arritmias");
+		chckbxArritmias.addItemListener(new chckbxArritmiasItemListener());
+		chckbxArritmias.setHorizontalTextPosition(SwingConstants.RIGHT);
+		GridBagConstraints gbc_chckbxArritmias = new GridBagConstraints();
+		gbc_chckbxArritmias.anchor = GridBagConstraints.WEST;
+		gbc_chckbxArritmias.insets = new Insets(0, 0, 5, 5);
+		gbc_chckbxArritmias.gridx = 0;
+		gbc_chckbxArritmias.gridy = 1;
+		pnlDesSintomas.add(chckbxArritmias, gbc_chckbxArritmias);
 		
-		rdbtnAlteracionesDelRitmo = new JRadioButton("Alteraciones del ritmo card\u00edaco");
-		rdbtnAlteracionesDelRitmo.addItemListener(new RdbtnAlteracionesDelRitmoItemListener());
-		GridBagConstraints gbc_rdbtnAlteracionesDelRitmo = new GridBagConstraints();
-		gbc_rdbtnAlteracionesDelRitmo.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnAlteracionesDelRitmo.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnAlteracionesDelRitmo.gridx = 1;
-		gbc_rdbtnAlteracionesDelRitmo.gridy = 1;
-		pnlDesSintomas.add(rdbtnAlteracionesDelRitmo, gbc_rdbtnAlteracionesDelRitmo);
+		chckbxAlteracionesDelRitmo = new JCheckBox("Alteraciones del ritmo card\u00edaco");
+		chckbxAlteracionesDelRitmo.addItemListener(new chckbxAlteracionesDelRitmoItemListener());
+		GridBagConstraints gbc_chckbxAlteracionesDelRitmo = new GridBagConstraints();
+		gbc_chckbxAlteracionesDelRitmo.anchor = GridBagConstraints.WEST;
+		gbc_chckbxAlteracionesDelRitmo.insets = new Insets(0, 0, 5, 0);
+		gbc_chckbxAlteracionesDelRitmo.gridx = 1;
+		gbc_chckbxAlteracionesDelRitmo.gridy = 1;
+		pnlDesSintomas.add(chckbxAlteracionesDelRitmo, gbc_chckbxAlteracionesDelRitmo);
 		
-		rdbtnPulsoIrregular = new JRadioButton("Pulso irregular o acelerado");
-		rdbtnPulsoIrregular.addItemListener(new RdbtnPulsoIrregularOItemListener());
-		GridBagConstraints gbc_rdbtnPulsoIrregular = new GridBagConstraints();
-		gbc_rdbtnPulsoIrregular.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnPulsoIrregular.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnPulsoIrregular.gridx = 0;
-		gbc_rdbtnPulsoIrregular.gridy = 2;
-		pnlDesSintomas.add(rdbtnPulsoIrregular, gbc_rdbtnPulsoIrregular);
+		chckbxPulsoIrregular = new JCheckBox("Pulso irregular o acelerado");
+		chckbxPulsoIrregular.addItemListener(new chckbxPulsoIrregularOItemListener());
+		GridBagConstraints gbc_chckbxPulsoIrregular = new GridBagConstraints();
+		gbc_chckbxPulsoIrregular.anchor = GridBagConstraints.WEST;
+		gbc_chckbxPulsoIrregular.insets = new Insets(0, 0, 5, 5);
+		gbc_chckbxPulsoIrregular.gridx = 0;
+		gbc_chckbxPulsoIrregular.gridy = 2;
+		pnlDesSintomas.add(chckbxPulsoIrregular, gbc_chckbxPulsoIrregular);
 		
 		lblDoloresOHinchazones = new JLabel("Dolores o hinchazones f\u00edsicos");
 		GridBagConstraints gbc_lblDoloresOHinchazones = new GridBagConstraints();
@@ -172,68 +168,68 @@ public class PanelDiagnosticar extends JPanel {
 		gbc_lblDoloresOHinchazones.gridy = 3;
 		pnlDesSintomas.add(lblDoloresOHinchazones, gbc_lblDoloresOHinchazones);
 		
-		rdbtnDolorDePecho = new JRadioButton("Dolor de pecho");
-		rdbtnDolorDePecho.addItemListener(new RdbtnDolorDePechoItemListener());
-		GridBagConstraints gbc_rdbtnDolorDePecho = new GridBagConstraints();
-		gbc_rdbtnDolorDePecho.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnDolorDePecho.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnDolorDePecho.gridx = 0;
-		gbc_rdbtnDolorDePecho.gridy = 4;
-		pnlDesSintomas.add(rdbtnDolorDePecho, gbc_rdbtnDolorDePecho);
+		chckbxDolorDePecho = new JCheckBox("Dolor de pecho");
+		chckbxDolorDePecho.addItemListener(new chckbxDolorDePechoItemListener());
+		GridBagConstraints gbc_chckbxDolorDePecho = new GridBagConstraints();
+		gbc_chckbxDolorDePecho.anchor = GridBagConstraints.WEST;
+		gbc_chckbxDolorDePecho.insets = new Insets(0, 0, 5, 5);
+		gbc_chckbxDolorDePecho.gridx = 0;
+		gbc_chckbxDolorDePecho.gridy = 4;
+		pnlDesSintomas.add(chckbxDolorDePecho, gbc_chckbxDolorDePecho);
 		
-		rdbtnDolorDeBrazo = new JRadioButton("Dolor de brazo izquierdo, de cuello, de mand\u00edbula o de espalda");
-		rdbtnDolorDeBrazo.addItemListener(new RdbtnDolorDeBrazoItemListener());
-		GridBagConstraints gbc_rdbtnDolorDeBrazo = new GridBagConstraints();
-		gbc_rdbtnDolorDeBrazo.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnDolorDeBrazo.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnDolorDeBrazo.gridx = 1;
-		gbc_rdbtnDolorDeBrazo.gridy = 4;
-		pnlDesSintomas.add(rdbtnDolorDeBrazo, gbc_rdbtnDolorDeBrazo);
+		chckbxDolorDeBrazo = new JCheckBox("Dolor de brazo izquierdo, de cuello, de mand\u00edbula o de espalda");
+		chckbxDolorDeBrazo.addItemListener(new chckbxDolorDeBrazoItemListener());
+		GridBagConstraints gbc_chckbxDolorDeBrazo = new GridBagConstraints();
+		gbc_chckbxDolorDeBrazo.anchor = GridBagConstraints.WEST;
+		gbc_chckbxDolorDeBrazo.insets = new Insets(0, 0, 5, 0);
+		gbc_chckbxDolorDeBrazo.gridx = 1;
+		gbc_chckbxDolorDeBrazo.gridy = 4;
+		pnlDesSintomas.add(chckbxDolorDeBrazo, gbc_chckbxDolorDeBrazo);
 		
-		rdbtnHinchaznEnPies = new JRadioButton("Hinchaz\u00f3n en pies, tobillos o ambos");
-		rdbtnHinchaznEnPies.addItemListener(new RdbtnHinchaznEnPiesItemListener());
-		GridBagConstraints gbc_rdbtnHinchaznEnPies = new GridBagConstraints();
-		gbc_rdbtnHinchaznEnPies.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnHinchaznEnPies.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnHinchaznEnPies.gridx = 0;
-		gbc_rdbtnHinchaznEnPies.gridy = 5;
-		pnlDesSintomas.add(rdbtnHinchaznEnPies, gbc_rdbtnHinchaznEnPies);
+		chckbxHinchaznEnPies = new JCheckBox("Hinchaz\u00f3n en pies, tobillos o ambos");
+		chckbxHinchaznEnPies.addItemListener(new chckbxHinchaznEnPiesItemListener());
+		GridBagConstraints gbc_chckbxHinchaznEnPies = new GridBagConstraints();
+		gbc_chckbxHinchaznEnPies.anchor = GridBagConstraints.WEST;
+		gbc_chckbxHinchaznEnPies.insets = new Insets(0, 0, 5, 5);
+		gbc_chckbxHinchaznEnPies.gridx = 0;
+		gbc_chckbxHinchaznEnPies.gridy = 5;
+		pnlDesSintomas.add(chckbxHinchaznEnPies, gbc_chckbxHinchaznEnPies);
 		
-		rdbtnHinchazonAbdomen = new JRadioButton("Hinchaz\u00f3n en el abdomen");
-		rdbtnHinchazonAbdomen.addItemListener(new RdbtnHinchaznEnElItemListener());
-		GridBagConstraints gbc_rdbtnHinchazonAbdomen = new GridBagConstraints();
-		gbc_rdbtnHinchazonAbdomen.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnHinchazonAbdomen.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnHinchazonAbdomen.gridx = 1;
-		gbc_rdbtnHinchazonAbdomen.gridy = 5;
-		pnlDesSintomas.add(rdbtnHinchazonAbdomen, gbc_rdbtnHinchazonAbdomen);
+		chckbxHinchazonAbdomen = new JCheckBox("Hinchaz\u00f3n en el abdomen");
+		chckbxHinchazonAbdomen.addItemListener(new chckbxHinchaznEnElItemListener());
+		GridBagConstraints gbc_chckbxHinchazonAbdomen = new GridBagConstraints();
+		gbc_chckbxHinchazonAbdomen.anchor = GridBagConstraints.WEST;
+		gbc_chckbxHinchazonAbdomen.insets = new Insets(0, 0, 5, 0);
+		gbc_chckbxHinchazonAbdomen.gridx = 1;
+		gbc_chckbxHinchazonAbdomen.gridy = 5;
+		pnlDesSintomas.add(chckbxHinchazonAbdomen, gbc_chckbxHinchazonAbdomen);
 		
-		rdbtnInflamacionAbdomen = new JRadioButton("Inflamaci\u00f3n en el abdomen");
-		rdbtnInflamacionAbdomen.addItemListener(new RdbtnInflamacinEnElItemListener());
-		GridBagConstraints gbc_rdbtnInflamacionAbdomen = new GridBagConstraints();
-		gbc_rdbtnInflamacionAbdomen.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnInflamacionAbdomen.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnInflamacionAbdomen.gridx = 0;
-		gbc_rdbtnInflamacionAbdomen.gridy = 6;
-		pnlDesSintomas.add(rdbtnInflamacionAbdomen, gbc_rdbtnInflamacionAbdomen);
+		chckbxInflamacionAbdomen = new JCheckBox("Inflamaci\u00f3n en el abdomen");
+		chckbxInflamacionAbdomen.addItemListener(new chckbxInflamacinEnElItemListener());
+		GridBagConstraints gbc_chckbxInflamacionAbdomen = new GridBagConstraints();
+		gbc_chckbxInflamacionAbdomen.anchor = GridBagConstraints.WEST;
+		gbc_chckbxInflamacionAbdomen.insets = new Insets(0, 0, 5, 5);
+		gbc_chckbxInflamacionAbdomen.gridx = 0;
+		gbc_chckbxInflamacionAbdomen.gridy = 6;
+		pnlDesSintomas.add(chckbxInflamacionAbdomen, gbc_chckbxInflamacionAbdomen);
 		
-		rdbtnInflamacionEnPiernas = new JRadioButton("Inflamaci\u00f3n en piernas, pie o tobillos");
-		rdbtnInflamacionEnPiernas.addItemListener(new RdbtnInflamacinEnPiernasItemListener());
-		GridBagConstraints gbc_rdbtnInflamacionEnPiernas = new GridBagConstraints();
-		gbc_rdbtnInflamacionEnPiernas.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnInflamacionEnPiernas.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnInflamacionEnPiernas.gridx = 1;
-		gbc_rdbtnInflamacionEnPiernas.gridy = 6;
-		pnlDesSintomas.add(rdbtnInflamacionEnPiernas, gbc_rdbtnInflamacionEnPiernas);
+		chckbxInflamacionEnPiernas = new JCheckBox("Inflamaci\u00f3n en piernas, pie o tobillos");
+		chckbxInflamacionEnPiernas.addItemListener(new chckbxInflamacinEnPiernasItemListener());
+		GridBagConstraints gbc_chckbxInflamacionEnPiernas = new GridBagConstraints();
+		gbc_chckbxInflamacionEnPiernas.anchor = GridBagConstraints.WEST;
+		gbc_chckbxInflamacionEnPiernas.insets = new Insets(0, 0, 5, 0);
+		gbc_chckbxInflamacionEnPiernas.gridx = 1;
+		gbc_chckbxInflamacionEnPiernas.gridy = 6;
+		pnlDesSintomas.add(chckbxInflamacionEnPiernas, gbc_chckbxInflamacionEnPiernas);
 		
-		rdbtnInflamacionEnGanglios = new JRadioButton("Inflamaci\u00f3n en ganglios del cuello");
-		rdbtnInflamacionEnGanglios.addItemListener(new RdbtnInflamacinEnGangliosItemListener());
-		GridBagConstraints gbc_rdbtnInflamacionEnGanglios = new GridBagConstraints();
-		gbc_rdbtnInflamacionEnGanglios.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnInflamacionEnGanglios.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnInflamacionEnGanglios.gridx = 0;
-		gbc_rdbtnInflamacionEnGanglios.gridy = 7;
-		pnlDesSintomas.add(rdbtnInflamacionEnGanglios, gbc_rdbtnInflamacionEnGanglios);
+		chckbxInflamacionEnGanglios = new JCheckBox("Inflamaci\u00f3n en ganglios del cuello");
+		chckbxInflamacionEnGanglios.addItemListener(new chckbxInflamacinEnGangliosItemListener());
+		GridBagConstraints gbc_chckbxInflamacionEnGanglios = new GridBagConstraints();
+		gbc_chckbxInflamacionEnGanglios.anchor = GridBagConstraints.WEST;
+		gbc_chckbxInflamacionEnGanglios.insets = new Insets(0, 0, 5, 5);
+		gbc_chckbxInflamacionEnGanglios.gridx = 0;
+		gbc_chckbxInflamacionEnGanglios.gridy = 7;
+		pnlDesSintomas.add(chckbxInflamacionEnGanglios, gbc_chckbxInflamacionEnGanglios);
 		
 		lblErupcionesORojeces = new JLabel("Erupciones o rojeces f\u00edsicas");
 		GridBagConstraints gbc_lblErupcionesORojeces = new GridBagConstraints();
@@ -244,23 +240,23 @@ public class PanelDiagnosticar extends JPanel {
 		gbc_lblErupcionesORojeces.gridy = 8;
 		pnlDesSintomas.add(lblErupcionesORojeces, gbc_lblErupcionesORojeces);
 		
-		rdbtnOjosLenguaRojos = new JRadioButton("Ojos y lengua rojos");
-		rdbtnOjosLenguaRojos.addItemListener(new RdbtnOjosLenguaRojosItemListener());
-		GridBagConstraints gbc_rdbtnOjosLenguaRojos = new GridBagConstraints();
-		gbc_rdbtnOjosLenguaRojos.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnOjosLenguaRojos.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnOjosLenguaRojos.gridx = 0;
-		gbc_rdbtnOjosLenguaRojos.gridy = 9;
-		pnlDesSintomas.add(rdbtnOjosLenguaRojos, gbc_rdbtnOjosLenguaRojos);
+		chckbxOjosLenguaRojos = new JCheckBox("Ojos y lengua rojos");
+		chckbxOjosLenguaRojos.addItemListener(new chckbxOjosLenguaRojosItemListener());
+		GridBagConstraints gbc_chckbxOjosLenguaRojos = new GridBagConstraints();
+		gbc_chckbxOjosLenguaRojos.anchor = GridBagConstraints.WEST;
+		gbc_chckbxOjosLenguaRojos.insets = new Insets(0, 0, 5, 5);
+		gbc_chckbxOjosLenguaRojos.gridx = 0;
+		gbc_chckbxOjosLenguaRojos.gridy = 9;
+		pnlDesSintomas.add(chckbxOjosLenguaRojos, gbc_chckbxOjosLenguaRojos);
 		
-		rdbtnErupcionesCutaneas = new JRadioButton("Erupciones cut\u00e1neas o descamaci\u00f3n");
-		rdbtnErupcionesCutaneas.addItemListener(new RdbtnErupcionesCutneasOItemListener());
-		GridBagConstraints gbc_rdbtnErupcionesCutaneas = new GridBagConstraints();
-		gbc_rdbtnErupcionesCutaneas.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnErupcionesCutaneas.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnErupcionesCutaneas.gridx = 1;
-		gbc_rdbtnErupcionesCutaneas.gridy = 9;
-		pnlDesSintomas.add(rdbtnErupcionesCutaneas, gbc_rdbtnErupcionesCutaneas);
+		chckbxErupcionesCutaneas = new JCheckBox("Erupciones cut\u00e1neas o descamaci\u00f3n");
+		chckbxErupcionesCutaneas.addItemListener(new chckbxErupcionesCutneasOItemListener());
+		GridBagConstraints gbc_chckbxErupcionesCutaneas = new GridBagConstraints();
+		gbc_chckbxErupcionesCutaneas.anchor = GridBagConstraints.WEST;
+		gbc_chckbxErupcionesCutaneas.insets = new Insets(0, 0, 5, 0);
+		gbc_chckbxErupcionesCutaneas.gridx = 1;
+		gbc_chckbxErupcionesCutaneas.gridy = 9;
+		pnlDesSintomas.add(chckbxErupcionesCutaneas, gbc_chckbxErupcionesCutaneas);
 		
 		lblSistemaRespiratorio = new JLabel("Sistema respiratorio");
 		lblSistemaRespiratorio.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -271,41 +267,41 @@ public class PanelDiagnosticar extends JPanel {
 		gbc_lblSistemaRespiratorio.gridy = 10;
 		pnlDesSintomas.add(lblSistemaRespiratorio, gbc_lblSistemaRespiratorio);
 		
-		rdbtnDificultadParaRespirar = new JRadioButton("Dificultad para respirar");
-		rdbtnDificultadParaRespirar.addItemListener(new RdbtnDificultadParaRespirarItemListener());
-		GridBagConstraints gbc_rdbtnDificultadParaRespirar = new GridBagConstraints();
-		gbc_rdbtnDificultadParaRespirar.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnDificultadParaRespirar.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnDificultadParaRespirar.gridx = 0;
-		gbc_rdbtnDificultadParaRespirar.gridy = 11;
-		pnlDesSintomas.add(rdbtnDificultadParaRespirar, gbc_rdbtnDificultadParaRespirar);
+		chckbxDificultadParaRespirar = new JCheckBox("Dificultad para respirar");
+		chckbxDificultadParaRespirar.addItemListener(new chckbxDificultadParaRespirarItemListener());
+		GridBagConstraints gbc_chckbxDificultadParaRespirar = new GridBagConstraints();
+		gbc_chckbxDificultadParaRespirar.anchor = GridBagConstraints.WEST;
+		gbc_chckbxDificultadParaRespirar.insets = new Insets(0, 0, 5, 5);
+		gbc_chckbxDificultadParaRespirar.gridx = 0;
+		gbc_chckbxDificultadParaRespirar.gridy = 11;
+		pnlDesSintomas.add(chckbxDificultadParaRespirar, gbc_chckbxDificultadParaRespirar);
 		
-		rdbtnTos = new JRadioButton("Tos");
-		rdbtnTos.addItemListener(new RdbtnTosItemListener());
-		GridBagConstraints gbc_rdbtnTos = new GridBagConstraints();
-		gbc_rdbtnTos.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnTos.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnTos.gridx = 1;
-		gbc_rdbtnTos.gridy = 11;
-		pnlDesSintomas.add(rdbtnTos, gbc_rdbtnTos);
+		chckbxTos = new JCheckBox("Tos");
+		chckbxTos.addItemListener(new chckbxTosItemListener());
+		GridBagConstraints gbc_chckbxTos = new GridBagConstraints();
+		gbc_chckbxTos.anchor = GridBagConstraints.WEST;
+		gbc_chckbxTos.insets = new Insets(0, 0, 5, 0);
+		gbc_chckbxTos.gridx = 1;
+		gbc_chckbxTos.gridy = 11;
+		pnlDesSintomas.add(chckbxTos, gbc_chckbxTos);
 		
-		rdbtnTosConSangre = new JRadioButton("Tos con sangre");
-		rdbtnTosConSangre.addItemListener(new RdbtnTosConSangreItemListener());
-		GridBagConstraints gbc_rdbtnTosConSangre = new GridBagConstraints();
-		gbc_rdbtnTosConSangre.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnTosConSangre.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnTosConSangre.gridx = 0;
-		gbc_rdbtnTosConSangre.gridy = 12;
-		pnlDesSintomas.add(rdbtnTosConSangre, gbc_rdbtnTosConSangre);
+		chckbxTosConSangre = new JCheckBox("Tos con sangre");
+		chckbxTosConSangre.addItemListener(new chckbxTosConSangreItemListener());
+		GridBagConstraints gbc_chckbxTosConSangre = new GridBagConstraints();
+		gbc_chckbxTosConSangre.anchor = GridBagConstraints.WEST;
+		gbc_chckbxTosConSangre.insets = new Insets(0, 0, 5, 5);
+		gbc_chckbxTosConSangre.gridx = 0;
+		gbc_chckbxTosConSangre.gridy = 12;
+		pnlDesSintomas.add(chckbxTosConSangre, gbc_chckbxTosConSangre);
 		
-		rdbtnInfeccionesRespiratorias = new JRadioButton("Infecciones respiratorias");
-		rdbtnInfeccionesRespiratorias.addItemListener(new RdbtnInfeccionesRespiratoriasItemListener());
-		GridBagConstraints gbc_rdbtnInfeccionesRespiratorias = new GridBagConstraints();
-		gbc_rdbtnInfeccionesRespiratorias.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnInfeccionesRespiratorias.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnInfeccionesRespiratorias.gridx = 1;
-		gbc_rdbtnInfeccionesRespiratorias.gridy = 12;
-		pnlDesSintomas.add(rdbtnInfeccionesRespiratorias, gbc_rdbtnInfeccionesRespiratorias);
+		chckbxInfeccionesRespiratorias = new JCheckBox("Infecciones respiratorias");
+		chckbxInfeccionesRespiratorias.addItemListener(new chckbxInfeccionesRespiratoriasItemListener());
+		GridBagConstraints gbc_chckbxInfeccionesRespiratorias = new GridBagConstraints();
+		gbc_chckbxInfeccionesRespiratorias.anchor = GridBagConstraints.WEST;
+		gbc_chckbxInfeccionesRespiratorias.insets = new Insets(0, 0, 5, 0);
+		gbc_chckbxInfeccionesRespiratorias.gridx = 1;
+		gbc_chckbxInfeccionesRespiratorias.gridy = 12;
+		pnlDesSintomas.add(chckbxInfeccionesRespiratorias, gbc_chckbxInfeccionesRespiratorias);
 		
 		lblSistemaUrinario = new JLabel("Sistema urinario");
 		GridBagConstraints gbc_lblSistemaUrinario = new GridBagConstraints();
@@ -316,32 +312,32 @@ public class PanelDiagnosticar extends JPanel {
 		gbc_lblSistemaUrinario.gridy = 13;
 		pnlDesSintomas.add(lblSistemaUrinario, gbc_lblSistemaUrinario);
 		
-		rdbtnMiccionExcesivaNoche = new JRadioButton("Micci\u00f3n excesiva durante la noche");
-		rdbtnMiccionExcesivaNoche.addItemListener(new RdbtnMiccinExcesivaDuranteItemListener());
-		GridBagConstraints gbc_rdbtnMiccionExcesivaNoche = new GridBagConstraints();
-		gbc_rdbtnMiccionExcesivaNoche.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnMiccionExcesivaNoche.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnMiccionExcesivaNoche.gridx = 0;
-		gbc_rdbtnMiccionExcesivaNoche.gridy = 14;
-		pnlDesSintomas.add(rdbtnMiccionExcesivaNoche, gbc_rdbtnMiccionExcesivaNoche);
+		chckbxMiccionExcesivaNoche = new JCheckBox("Micci\u00f3n excesiva durante la noche");
+		chckbxMiccionExcesivaNoche.addItemListener(new chckbxMiccinExcesivaDuranteItemListener());
+		GridBagConstraints gbc_chckbxMiccionExcesivaNoche = new GridBagConstraints();
+		gbc_chckbxMiccionExcesivaNoche.anchor = GridBagConstraints.WEST;
+		gbc_chckbxMiccionExcesivaNoche.insets = new Insets(0, 0, 5, 5);
+		gbc_chckbxMiccionExcesivaNoche.gridx = 0;
+		gbc_chckbxMiccionExcesivaNoche.gridy = 14;
+		pnlDesSintomas.add(chckbxMiccionExcesivaNoche, gbc_chckbxMiccionExcesivaNoche);
 		
-		rdbtnRetencionDeLiquidos = new JRadioButton("Retenci\u00f3n de l\u00edquidos");
-		rdbtnRetencionDeLiquidos.addItemListener(new RdbtnRetencinDeLquidosItemListener());
-		GridBagConstraints gbc_rdbtnRetencionDeLiquidos = new GridBagConstraints();
-		gbc_rdbtnRetencionDeLiquidos.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnRetencionDeLiquidos.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnRetencionDeLiquidos.gridx = 1;
-		gbc_rdbtnRetencionDeLiquidos.gridy = 14;
-		pnlDesSintomas.add(rdbtnRetencionDeLiquidos, gbc_rdbtnRetencionDeLiquidos);
+		chckbxRetencionDeLiquidos = new JCheckBox("Retenci\u00f3n de l\u00edquidos");
+		chckbxRetencionDeLiquidos.addItemListener(new chckbxRetencinDeLquidosItemListener());
+		GridBagConstraints gbc_chckbxRetencionDeLiquidos = new GridBagConstraints();
+		gbc_chckbxRetencionDeLiquidos.anchor = GridBagConstraints.WEST;
+		gbc_chckbxRetencionDeLiquidos.insets = new Insets(0, 0, 5, 0);
+		gbc_chckbxRetencionDeLiquidos.gridx = 1;
+		gbc_chckbxRetencionDeLiquidos.gridy = 14;
+		pnlDesSintomas.add(chckbxRetencionDeLiquidos, gbc_chckbxRetencionDeLiquidos);
 		
-		rdbtnBajaProduccionOrina = new JRadioButton("Baja producci\u00f3n de orina");
-		rdbtnBajaProduccionOrina.addItemListener(new RdbtnBajaProduccinDeItemListener());
-		GridBagConstraints gbc_rdbtnBajaProduccionOrina = new GridBagConstraints();
-		gbc_rdbtnBajaProduccionOrina.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnBajaProduccionOrina.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnBajaProduccionOrina.gridx = 0;
-		gbc_rdbtnBajaProduccionOrina.gridy = 15;
-		pnlDesSintomas.add(rdbtnBajaProduccionOrina, gbc_rdbtnBajaProduccionOrina);
+		chckbxBajaProduccionOrina = new JCheckBox("Baja producci\u00f3n de orina");
+		chckbxBajaProduccionOrina.addItemListener(new chckbxBajaProduccinDeItemListener());
+		GridBagConstraints gbc_chckbxBajaProduccionOrina = new GridBagConstraints();
+		gbc_chckbxBajaProduccionOrina.anchor = GridBagConstraints.WEST;
+		gbc_chckbxBajaProduccionOrina.insets = new Insets(0, 0, 5, 5);
+		gbc_chckbxBajaProduccionOrina.gridx = 0;
+		gbc_chckbxBajaProduccionOrina.gridy = 15;
+		pnlDesSintomas.add(chckbxBajaProduccionOrina, gbc_chckbxBajaProduccionOrina);
 		
 		lblSistemaDigestivo = new JLabel("Sistema digestivo");
 		GridBagConstraints gbc_lblSistemaDigestivo = new GridBagConstraints();
@@ -352,23 +348,23 @@ public class PanelDiagnosticar extends JPanel {
 		gbc_lblSistemaDigestivo.gridy = 16;
 		pnlDesSintomas.add(lblSistemaDigestivo, gbc_lblSistemaDigestivo);
 		
-		rdbtnGanasDeVomitar = new JRadioButton("Ganas de vomitar");
-		rdbtnGanasDeVomitar.addItemListener(new RdbtnGanasDeVomitarItemListener());
-		GridBagConstraints gbc_rdbtnGanasDeVomitar = new GridBagConstraints();
-		gbc_rdbtnGanasDeVomitar.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnGanasDeVomitar.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnGanasDeVomitar.gridx = 0;
-		gbc_rdbtnGanasDeVomitar.gridy = 17;
-		pnlDesSintomas.add(rdbtnGanasDeVomitar, gbc_rdbtnGanasDeVomitar);
+		chckbxGanasDeVomitar = new JCheckBox("Ganas de vomitar");
+		chckbxGanasDeVomitar.addItemListener(new chckbxGanasDeVomitarItemListener());
+		GridBagConstraints gbc_chckbxGanasDeVomitar = new GridBagConstraints();
+		gbc_chckbxGanasDeVomitar.anchor = GridBagConstraints.WEST;
+		gbc_chckbxGanasDeVomitar.insets = new Insets(0, 0, 5, 5);
+		gbc_chckbxGanasDeVomitar.gridx = 0;
+		gbc_chckbxGanasDeVomitar.gridy = 17;
+		pnlDesSintomas.add(chckbxGanasDeVomitar, gbc_chckbxGanasDeVomitar);
 		
-		rdbtnFaltaDeApetito = new JRadioButton("Falta de apetito");
-		rdbtnFaltaDeApetito.addItemListener(new RdbtnFaltaDeApetitoItemListener());
-		GridBagConstraints gbc_rdbtnFaltaDeApetito = new GridBagConstraints();
-		gbc_rdbtnFaltaDeApetito.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnFaltaDeApetito.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnFaltaDeApetito.gridx = 1;
-		gbc_rdbtnFaltaDeApetito.gridy = 17;
-		pnlDesSintomas.add(rdbtnFaltaDeApetito, gbc_rdbtnFaltaDeApetito);
+		chckbxFaltaDeApetito = new JCheckBox("Falta de apetito");
+		chckbxFaltaDeApetito.addItemListener(new chckbxFaltaDeApetitoItemListener());
+		GridBagConstraints gbc_chckbxFaltaDeApetito = new GridBagConstraints();
+		gbc_chckbxFaltaDeApetito.anchor = GridBagConstraints.WEST;
+		gbc_chckbxFaltaDeApetito.insets = new Insets(0, 0, 5, 0);
+		gbc_chckbxFaltaDeApetito.gridx = 1;
+		gbc_chckbxFaltaDeApetito.gridy = 17;
+		pnlDesSintomas.add(chckbxFaltaDeApetito, gbc_chckbxFaltaDeApetito);
 		
 		lblOtrosSntomas = new JLabel("Otros s\u00edntomas");
 		GridBagConstraints gbc_lblOtrosSntomas = new GridBagConstraints();
@@ -379,94 +375,94 @@ public class PanelDiagnosticar extends JPanel {
 		gbc_lblOtrosSntomas.gridy = 18;
 		pnlDesSintomas.add(lblOtrosSntomas, gbc_lblOtrosSntomas);
 		
-		rdbtnCansancio = new JRadioButton("Cansancio");
-		rdbtnCansancio.addItemListener(new RdbtnCansancioItemListener());
-		GridBagConstraints gbc_rdbtnCansancio = new GridBagConstraints();
-		gbc_rdbtnCansancio.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnCansancio.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnCansancio.gridx = 0;
-		gbc_rdbtnCansancio.gridy = 19;
-		pnlDesSintomas.add(rdbtnCansancio, gbc_rdbtnCansancio);
+		chckbxCansancio = new JCheckBox("Cansancio");
+		chckbxCansancio.addItemListener(new chckbxCansancioItemListener());
+		GridBagConstraints gbc_chckbxCansancio = new GridBagConstraints();
+		gbc_chckbxCansancio.anchor = GridBagConstraints.WEST;
+		gbc_chckbxCansancio.insets = new Insets(0, 0, 5, 5);
+		gbc_chckbxCansancio.gridx = 0;
+		gbc_chckbxCansancio.gridy = 19;
+		pnlDesSintomas.add(chckbxCansancio, gbc_chckbxCansancio);
 		
-		rdbtnFiebre = new JRadioButton("Fiebre");
-		rdbtnFiebre.addItemListener(new RdbtnFiebre_1ItemListener());
-		GridBagConstraints gbc_rdbtnFiebre = new GridBagConstraints();
-		gbc_rdbtnFiebre.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnFiebre.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnFiebre.gridx = 1;
-		gbc_rdbtnFiebre.gridy = 19;
-		pnlDesSintomas.add(rdbtnFiebre, gbc_rdbtnFiebre);
+		chckbxFiebre = new JCheckBox("Fiebre");
+		chckbxFiebre.addItemListener(new chckbxFiebre_1ItemListener());
+		GridBagConstraints gbc_chckbxFiebre = new GridBagConstraints();
+		gbc_chckbxFiebre.anchor = GridBagConstraints.WEST;
+		gbc_chckbxFiebre.insets = new Insets(0, 0, 5, 0);
+		gbc_chckbxFiebre.gridx = 1;
+		gbc_chckbxFiebre.gridy = 19;
+		pnlDesSintomas.add(chckbxFiebre, gbc_chckbxFiebre);
 		
-		rdbtnVertigo = new JRadioButton("V\u00e9rtigo");
-		rdbtnVertigo.addItemListener(new RdbtnVrtigoItemListener());
-		GridBagConstraints gbc_rdbtnVertigo = new GridBagConstraints();
-		gbc_rdbtnVertigo.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnVertigo.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnVertigo.gridx = 0;
-		gbc_rdbtnVertigo.gridy = 20;
-		pnlDesSintomas.add(rdbtnVertigo, gbc_rdbtnVertigo);
+		chckbxVertigo = new JCheckBox("V\u00e9rtigo");
+		chckbxVertigo.addItemListener(new chckbxVrtigoItemListener());
+		GridBagConstraints gbc_chckbxVertigo = new GridBagConstraints();
+		gbc_chckbxVertigo.anchor = GridBagConstraints.WEST;
+		gbc_chckbxVertigo.insets = new Insets(0, 0, 5, 5);
+		gbc_chckbxVertigo.gridx = 0;
+		gbc_chckbxVertigo.gridy = 20;
+		pnlDesSintomas.add(chckbxVertigo, gbc_chckbxVertigo);
 		
-		rdbtnMareos = new JRadioButton("Mareos");
-		rdbtnMareos.addItemListener(new RdbtnMareosItemListener());
-		GridBagConstraints gbc_rdbtnMareos = new GridBagConstraints();
-		gbc_rdbtnMareos.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnMareos.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnMareos.gridx = 1;
-		gbc_rdbtnMareos.gridy = 20;
-		pnlDesSintomas.add(rdbtnMareos, gbc_rdbtnMareos);
+		chckbxMareos = new JCheckBox("Mareos");
+		chckbxMareos.addItemListener(new chckbxMareosItemListener());
+		GridBagConstraints gbc_chckbxMareos = new GridBagConstraints();
+		gbc_chckbxMareos.anchor = GridBagConstraints.WEST;
+		gbc_chckbxMareos.insets = new Insets(0, 0, 5, 0);
+		gbc_chckbxMareos.gridx = 1;
+		gbc_chckbxMareos.gridy = 20;
+		pnlDesSintomas.add(chckbxMareos, gbc_chckbxMareos);
 		
-		rdbtnPerdidaDeConocimiento = new JRadioButton("P\u00e9rdida de conocimiento");
-		rdbtnPerdidaDeConocimiento.addItemListener(new RdbtnPrdidaDeConocimientoItemListener());
-		GridBagConstraints gbc_rdbtnPerdidaDeConocimiento = new GridBagConstraints();
-		gbc_rdbtnPerdidaDeConocimiento.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnPerdidaDeConocimiento.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnPerdidaDeConocimiento.gridx = 0;
-		gbc_rdbtnPerdidaDeConocimiento.gridy = 21;
-		pnlDesSintomas.add(rdbtnPerdidaDeConocimiento, gbc_rdbtnPerdidaDeConocimiento);
+		chckbxPerdidaDeConocimiento = new JCheckBox("P\u00e9rdida de conocimiento");
+		chckbxPerdidaDeConocimiento.addItemListener(new chckbxPrdidaDeConocimientoItemListener());
+		GridBagConstraints gbc_chckbxPerdidaDeConocimiento = new GridBagConstraints();
+		gbc_chckbxPerdidaDeConocimiento.anchor = GridBagConstraints.WEST;
+		gbc_chckbxPerdidaDeConocimiento.insets = new Insets(0, 0, 5, 5);
+		gbc_chckbxPerdidaDeConocimiento.gridx = 0;
+		gbc_chckbxPerdidaDeConocimiento.gridy = 21;
+		pnlDesSintomas.add(chckbxPerdidaDeConocimiento, gbc_chckbxPerdidaDeConocimiento);
 		
-		rdbtnDebilidad = new JRadioButton("Debilidad");
-		rdbtnDebilidad.addItemListener(new RdbtnDebilidadItemListener());
-		GridBagConstraints gbc_rdbtnDebilidad = new GridBagConstraints();
-		gbc_rdbtnDebilidad.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnDebilidad.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnDebilidad.gridx = 1;
-		gbc_rdbtnDebilidad.gridy = 21;
-		pnlDesSintomas.add(rdbtnDebilidad, gbc_rdbtnDebilidad);
+		chckbxDebilidad = new JCheckBox("Debilidad");
+		chckbxDebilidad.addItemListener(new chckbxDebilidadItemListener());
+		GridBagConstraints gbc_chckbxDebilidad = new GridBagConstraints();
+		gbc_chckbxDebilidad.anchor = GridBagConstraints.WEST;
+		gbc_chckbxDebilidad.insets = new Insets(0, 0, 5, 0);
+		gbc_chckbxDebilidad.gridx = 1;
+		gbc_chckbxDebilidad.gridy = 21;
+		pnlDesSintomas.add(chckbxDebilidad, gbc_chckbxDebilidad);
 		
-		rdbtnPalidez = new JRadioButton("Palidez");
-		rdbtnPalidez.addItemListener(new RdbtnPalidezItemListener());
-		GridBagConstraints gbc_rdbtnPalidez = new GridBagConstraints();
-		gbc_rdbtnPalidez.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnPalidez.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnPalidez.gridx = 0;
-		gbc_rdbtnPalidez.gridy = 22;
-		pnlDesSintomas.add(rdbtnPalidez, gbc_rdbtnPalidez);
+		chckbxPalidez = new JCheckBox("Palidez");
+		chckbxPalidez.addItemListener(new chckbxPalidezItemListener());
+		GridBagConstraints gbc_chckbxPalidez = new GridBagConstraints();
+		gbc_chckbxPalidez.anchor = GridBagConstraints.WEST;
+		gbc_chckbxPalidez.insets = new Insets(0, 0, 5, 5);
+		gbc_chckbxPalidez.gridx = 0;
+		gbc_chckbxPalidez.gridy = 22;
+		pnlDesSintomas.add(chckbxPalidez, gbc_chckbxPalidez);
 		
-		rdbtnSudoracion = new JRadioButton("Sudoraci\u00f3n");
-		rdbtnSudoracion.addItemListener(new RdbtnSudoracinItemListener());
-		GridBagConstraints gbc_rdbtnSudoracion = new GridBagConstraints();
-		gbc_rdbtnSudoracion.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnSudoracion.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnSudoracion.gridx = 1;
-		gbc_rdbtnSudoracion.gridy = 22;
-		pnlDesSintomas.add(rdbtnSudoracion, gbc_rdbtnSudoracion);
+		chckbxSudoracion = new JCheckBox("Sudoraci\u00f3n");
+		chckbxSudoracion.addItemListener(new chckbxSudoracinItemListener());
+		GridBagConstraints gbc_chckbxSudoracion = new GridBagConstraints();
+		gbc_chckbxSudoracion.anchor = GridBagConstraints.WEST;
+		gbc_chckbxSudoracion.insets = new Insets(0, 0, 5, 0);
+		gbc_chckbxSudoracion.gridx = 1;
+		gbc_chckbxSudoracion.gridy = 22;
+		pnlDesSintomas.add(chckbxSudoracion, gbc_chckbxSudoracion);
 		
-		rdbtnMembranasMucosasLengua = new JRadioButton("Membranas mucosas en la lengua");
-		rdbtnMembranasMucosasLengua.addItemListener(new RdbtnMembranasMucosasEnItemListener());
-		GridBagConstraints gbc_rdbtnMembranasMucosasLengua = new GridBagConstraints();
-		gbc_rdbtnMembranasMucosasLengua.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnMembranasMucosasLengua.insets = new Insets(0, 0, 0, 5);
-		gbc_rdbtnMembranasMucosasLengua.gridx = 0;
-		gbc_rdbtnMembranasMucosasLengua.gridy = 23;
-		pnlDesSintomas.add(rdbtnMembranasMucosasLengua, gbc_rdbtnMembranasMucosasLengua);
+		chckbxMembranasMucosasLengua = new JCheckBox("Membranas mucosas en la lengua");
+		chckbxMembranasMucosasLengua.addItemListener(new chckbxMembranasMucosasEnItemListener());
+		GridBagConstraints gbc_chckbxMembranasMucosasLengua = new GridBagConstraints();
+		gbc_chckbxMembranasMucosasLengua.anchor = GridBagConstraints.WEST;
+		gbc_chckbxMembranasMucosasLengua.insets = new Insets(0, 0, 0, 5);
+		gbc_chckbxMembranasMucosasLengua.gridx = 0;
+		gbc_chckbxMembranasMucosasLengua.gridy = 23;
+		pnlDesSintomas.add(chckbxMembranasMucosasLengua, gbc_chckbxMembranasMucosasLengua);
 		
-		rdbtnDescamacin = new JRadioButton("Descamaci\u00f3n");
-		rdbtnDescamacin.addItemListener(new RdbtnDescamacinItemListener());
-		GridBagConstraints gbc_rdbtnDescamacin = new GridBagConstraints();
-		gbc_rdbtnDescamacin.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnDescamacin.gridx = 1;
-		gbc_rdbtnDescamacin.gridy = 23;
-		pnlDesSintomas.add(rdbtnDescamacin, gbc_rdbtnDescamacin);
+		chckbxDescamacion = new JCheckBox("Descamaci\u00f3n");
+		chckbxDescamacion.addItemListener(new chckbxDescamacinItemListener());
+		GridBagConstraints gbc_chckbxDescamacion = new GridBagConstraints();
+		gbc_chckbxDescamacion.anchor = GridBagConstraints.WEST;
+		gbc_chckbxDescamacion.gridx = 1;
+		gbc_chckbxDescamacion.gridy = 23;
+		pnlDesSintomas.add(chckbxDescamacion, gbc_chckbxDescamacion);
 		
 		btnDiagnosticar = new JButton("Diagnosticar");
 		btnDiagnosticar.addActionListener(new BtnDiagnosticarActionListener());
@@ -474,8 +470,8 @@ public class PanelDiagnosticar extends JPanel {
 		GridBagConstraints gbc_btnDiagnosticar = new GridBagConstraints();
 		gbc_btnDiagnosticar.anchor = GridBagConstraints.SOUTH;
 		gbc_btnDiagnosticar.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnDiagnosticar.insets = new Insets(0, 0, 5, 0);
-		gbc_btnDiagnosticar.gridx = 2;
+		gbc_btnDiagnosticar.insets = new Insets(0, 0, 5, 5);
+		gbc_btnDiagnosticar.gridx = 3;
 		gbc_btnDiagnosticar.gridy = 0;
 		pnlSintomas.add(btnDiagnosticar, gbc_btnDiagnosticar);
 		
@@ -484,9 +480,10 @@ public class PanelDiagnosticar extends JPanel {
 		btnLimpiarSeleccion.setHorizontalTextPosition(SwingConstants.RIGHT);
 		btnLimpiarSeleccion.setIcon(new ImageIcon(PanelDiagnosticar.class.getResource("/presentacion/Imagenes/double-sided-eraser.png")));
 		GridBagConstraints gbc_btnLimpiarSeleccion = new GridBagConstraints();
+		gbc_btnLimpiarSeleccion.insets = new Insets(0, 0, 0, 5);
 		gbc_btnLimpiarSeleccion.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnLimpiarSeleccion.anchor = GridBagConstraints.NORTH;
-		gbc_btnLimpiarSeleccion.gridx = 2;
+		gbc_btnLimpiarSeleccion.gridx = 3;
 		gbc_btnLimpiarSeleccion.gridy = 2;
 		pnlSintomas.add(btnLimpiarSeleccion, gbc_btnLimpiarSeleccion);
 		
@@ -509,6 +506,8 @@ public class PanelDiagnosticar extends JPanel {
 		pnlDiagnostico.add(scrollPane_1, gbc_scrollPane_1);
 		
 		taDiagnostico = new JTextArea();
+		taDiagnostico.setLineWrap(true);
+		taDiagnostico.setFont(new Font("Arial", Font.PLAIN, 15));
 		taDiagnostico.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		taDiagnostico.setEditable(false);
 		scrollPane_1.setViewportView(taDiagnostico);
@@ -523,6 +522,8 @@ public class PanelDiagnosticar extends JPanel {
 		pnlDiagnostico.add(scrollPane_2, gbc_scrollPane_2);
 		
 		taTratamiento = new JTextArea();
+		taTratamiento.setLineWrap(true);
+		taTratamiento.setFont(new Font("Arial", Font.PLAIN, 14));
 		taTratamiento.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		taTratamiento.setEditable(false);
 		scrollPane_2.setViewportView(taTratamiento);
@@ -541,7 +542,7 @@ public class PanelDiagnosticar extends JPanel {
 		return tabbedPane;
 	}
 
-	private class RdbtnArritmiasItemListener implements ItemListener {
+	private class chckbxArritmiasItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			 if (e.getStateChange() == ItemEvent.SELECTED) {
 			        diagnostico.setArritmias(true);
@@ -552,7 +553,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnAlteracionesDelRitmoItemListener implements ItemListener {
+	private class chckbxAlteracionesDelRitmoItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setAlteracionesritmo(true);
@@ -563,7 +564,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnPulsoIrregularOItemListener implements ItemListener {
+	private class chckbxPulsoIrregularOItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setPusloirregular(true);;
@@ -574,7 +575,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnDolorDePechoItemListener implements ItemListener {
+	private class chckbxDolorDePechoItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setDolordepecho(true);
@@ -585,7 +586,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnDolorDeBrazoItemListener implements ItemListener {
+	private class chckbxDolorDeBrazoItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setDolorbrazoizq(true);
@@ -596,7 +597,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnHinchaznEnPiesItemListener implements ItemListener {
+	private class chckbxHinchaznEnPiesItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setHinchazonpies(true);
@@ -607,7 +608,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnHinchaznEnElItemListener implements ItemListener {
+	private class chckbxHinchaznEnElItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setHinchazonabdomen(true);
@@ -618,7 +619,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnInflamacinEnElItemListener implements ItemListener {
+	private class chckbxInflamacinEnElItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setInflamacionabdomen(true);
@@ -629,7 +630,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnInflamacinEnPiernasItemListener implements ItemListener {
+	private class chckbxInflamacinEnPiernasItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setInflamacionpiernas(true);
@@ -640,7 +641,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnInflamacinEnGangliosItemListener implements ItemListener {
+	private class chckbxInflamacinEnGangliosItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setInflamancionganglios(true);
@@ -651,7 +652,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnOjosLenguaRojosItemListener implements ItemListener {
+	private class chckbxOjosLenguaRojosItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setOjoslenguarojos(true);
@@ -662,7 +663,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnErupcionesCutneasOItemListener implements ItemListener {
+	private class chckbxErupcionesCutneasOItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setErupcionescutaneas(true);
@@ -673,7 +674,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnMiccinExcesivaDuranteItemListener implements ItemListener {
+	private class chckbxMiccinExcesivaDuranteItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setMiccionexcesiva(true);
@@ -684,7 +685,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnRetencinDeLquidosItemListener implements ItemListener {
+	private class chckbxRetencinDeLquidosItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setRetencionliquidos(true);
@@ -695,7 +696,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnBajaProduccinDeItemListener implements ItemListener {
+	private class chckbxBajaProduccinDeItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setBajaproduccionorina(true);
@@ -706,7 +707,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnGanasDeVomitarItemListener implements ItemListener {
+	private class chckbxGanasDeVomitarItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setGanasvomitar(true);
@@ -717,7 +718,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnFaltaDeApetitoItemListener implements ItemListener {
+	private class chckbxFaltaDeApetitoItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setFaltaapetito(true);
@@ -728,7 +729,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnCansancioItemListener implements ItemListener {
+	private class chckbxCansancioItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setCansancio(true);
@@ -739,7 +740,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnFiebre_1ItemListener implements ItemListener {
+	private class chckbxFiebre_1ItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setFiebre(true);
@@ -750,7 +751,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnVrtigoItemListener implements ItemListener {
+	private class chckbxVrtigoItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setVertigo(true);
@@ -761,7 +762,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnMareosItemListener implements ItemListener {
+	private class chckbxMareosItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setMareos(true);
@@ -772,7 +773,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnPrdidaDeConocimientoItemListener implements ItemListener {
+	private class chckbxPrdidaDeConocimientoItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setPerdidaconocimiento(true);
@@ -783,7 +784,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnDebilidadItemListener implements ItemListener {
+	private class chckbxDebilidadItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setDebilidad(true);
@@ -794,7 +795,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnPalidezItemListener implements ItemListener {
+	private class chckbxPalidezItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setPalidez(true);
@@ -805,7 +806,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnSudoracinItemListener implements ItemListener {
+	private class chckbxSudoracinItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setSudoracion(true);
@@ -816,7 +817,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnMembranasMucosasEnItemListener implements ItemListener {
+	private class chckbxMembranasMucosasEnItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setMembranasmucosas(true);
@@ -829,37 +830,37 @@ public class PanelDiagnosticar extends JPanel {
 	
 	private class BtnLimpiarSeleccionActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			rdbtnArritmias.setSelected(false);
-			rdbtnAlteracionesDelRitmo.setSelected(false);
-			rdbtnPulsoIrregular.setSelected(false);
-			rdbtnDolorDePecho.setSelected(false);
-			rdbtnDolorDeBrazo.setSelected(false);
-			rdbtnHinchaznEnPies.setSelected(false);
-			rdbtnHinchazonAbdomen.setSelected(false);
-			rdbtnInflamacionAbdomen.setSelected(false);
-			rdbtnInflamacionEnPiernas.setSelected(false);
-			rdbtnInflamacionEnGanglios.setSelected(false);
-			rdbtnErupcionesCutaneas.setSelected(false);
-			rdbtnOjosLenguaRojos.setSelected(false);
-			rdbtnMiccionExcesivaNoche.setSelected(false);
-			rdbtnRetencionDeLiquidos.setSelected(false);
-			rdbtnBajaProduccionOrina.setSelected(false);
-			rdbtnGanasDeVomitar.setSelected(false);
-			rdbtnFaltaDeApetito.setSelected(false);
-			rdbtnMembranasMucosasLengua.setSelected(false);
-			rdbtnPalidez.setSelected(false);
-			rdbtnSudoracion.setSelected(false);
-			rdbtnPerdidaDeConocimiento.setSelected(false);
-			rdbtnDebilidad.setSelected(false);
-			rdbtnVertigo.setSelected(false);
-			rdbtnMareos.setSelected(false);
-			rdbtnCansancio.setSelected(false);
-			rdbtnFiebre.setSelected(false);
-			rdbtnDescamacin.setSelected(false);
-			rdbtnDificultadParaRespirar.setSelected(false);
-			rdbtnTos.setSelected(false);
-			rdbtnTosConSangre.setSelected(false);
-			rdbtnInfeccionesRespiratorias.setSelected(false);
+			chckbxArritmias.setSelected(false);
+			chckbxAlteracionesDelRitmo.setSelected(false);
+			chckbxPulsoIrregular.setSelected(false);
+			chckbxDolorDePecho.setSelected(false);
+			chckbxDolorDeBrazo.setSelected(false);
+			chckbxHinchaznEnPies.setSelected(false);
+			chckbxHinchazonAbdomen.setSelected(false);
+			chckbxInflamacionAbdomen.setSelected(false);
+			chckbxInflamacionEnPiernas.setSelected(false);
+			chckbxInflamacionEnGanglios.setSelected(false);
+			chckbxErupcionesCutaneas.setSelected(false);
+			chckbxOjosLenguaRojos.setSelected(false);
+			chckbxMiccionExcesivaNoche.setSelected(false);
+			chckbxRetencionDeLiquidos.setSelected(false);
+			chckbxBajaProduccionOrina.setSelected(false);
+			chckbxGanasDeVomitar.setSelected(false);
+			chckbxFaltaDeApetito.setSelected(false);
+			chckbxMembranasMucosasLengua.setSelected(false);
+			chckbxPalidez.setSelected(false);
+			chckbxSudoracion.setSelected(false);
+			chckbxPerdidaDeConocimiento.setSelected(false);
+			chckbxDebilidad.setSelected(false);
+			chckbxVertigo.setSelected(false);
+			chckbxMareos.setSelected(false);
+			chckbxCansancio.setSelected(false);
+			chckbxFiebre.setSelected(false);
+			chckbxDescamacion.setSelected(false);
+			chckbxDificultadParaRespirar.setSelected(false);
+			chckbxTos.setSelected(false);
+			chckbxTosConSangre.setSelected(false);
+			chckbxInfeccionesRespiratorias.setSelected(false);
 			
 		}
 	}
@@ -959,7 +960,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnDescamacinItemListener implements ItemListener {
+	private class chckbxDescamacinItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setDescamacion(true);
@@ -970,7 +971,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnDificultadParaRespirarItemListener implements ItemListener {
+	private class chckbxDificultadParaRespirarItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setDificultadrespirar(true);
@@ -981,7 +982,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnTosItemListener implements ItemListener {
+	private class chckbxTosItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setTos(true);
@@ -992,7 +993,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnTosConSangreItemListener implements ItemListener {
+	private class chckbxTosConSangreItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setTossangre(true);
@@ -1003,7 +1004,7 @@ public class PanelDiagnosticar extends JPanel {
 		}
 	}
 	
-	private class RdbtnInfeccionesRespiratoriasItemListener implements ItemListener {
+	private class chckbxInfeccionesRespiratoriasItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 		        diagnostico.setInfeccionesrespirar(true);

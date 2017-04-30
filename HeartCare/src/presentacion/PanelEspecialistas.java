@@ -343,7 +343,8 @@ public class PanelEspecialistas extends JPanel {
 		add(btnContactarEspecialista, gbc_btnContactarEspecialista);
 
 	}
-
+	
+	
 	private void rellenarTabla() {
 		Object[] fila = new Object [model.getColumnCount()];
 		

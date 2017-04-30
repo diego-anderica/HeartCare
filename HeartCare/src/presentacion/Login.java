@@ -79,6 +79,7 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/presentacion/Imagenes/cardiograma24.png")));
 		setTitle("Login - HeartCare");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
