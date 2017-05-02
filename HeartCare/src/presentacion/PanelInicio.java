@@ -44,7 +44,7 @@ public class PanelInicio extends JPanel {
 		add(lblLogo, gbc_lblLogo);
 		
 		lblFoto = new JLabel("");
-		lblFoto.setIcon(new ImageIcon(PanelInicio.class.getResource("/presentacion/Imagenes/cara.gif")));
+		lblFoto.setIcon(new ImageIcon(PanelInicio.class.getResource("/presentacion/Imagenes/Cara(grande).gif")));
 		GridBagConstraints gbc_lblFoto = new GridBagConstraints();
 		gbc_lblFoto.gridwidth = 2;
 		gbc_lblFoto.insets = new Insets(0, 0, 5, 5);
