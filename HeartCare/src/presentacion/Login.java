@@ -115,7 +115,7 @@ public class Login extends JFrame {
 		lblFoto = new JLabel("");
 		lblFoto.setVisible(false);
 		lblFoto.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		lblFoto.setIcon(new ImageIcon(Login.class.getResource("/presentacion/Imagenes/cara.gif")));
+		lblFoto.setIcon(new ImageIcon(Login.class.getResource("/presentacion/Imagenes/Cara.gif")));
 		GridBagConstraints gbc_lblFoto = new GridBagConstraints();
 		gbc_lblFoto.gridheight = 3;
 		gbc_lblFoto.insets = new Insets(0, 0, 5, 5);
