@@ -509,7 +509,6 @@ public class PanelDiagnosticar extends JPanel {
 		taDiagnostico.setLineWrap(true);
 		taDiagnostico.setFont(new Font("Arial", Font.PLAIN, 15));
 		taDiagnostico.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		taDiagnostico.setEditable(false);
 		scrollPane_1.setViewportView(taDiagnostico);
 		
 		scrollPane_2 = new JScrollPane();
@@ -525,7 +524,6 @@ public class PanelDiagnosticar extends JPanel {
 		taTratamiento.setLineWrap(true);
 		taTratamiento.setFont(new Font("Arial", Font.PLAIN, 14));
 		taTratamiento.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		taTratamiento.setEditable(false);
 		scrollPane_2.setViewportView(taTratamiento);
 		
 		btnGenerarInforme = new JButton("Generar Informe");
